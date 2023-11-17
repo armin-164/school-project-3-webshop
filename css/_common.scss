@@ -7,7 +7,7 @@ html, body {
 
 
 header {
-    background-color: grey;
+    background-color: rgb(134, 225, 255);
     color: #ffffff;
     display: flex;
     justify-content: space-between;
@@ -21,19 +21,22 @@ header {
             font-size: clamp(1.5rem, 3vw, 3vw);
             margin: 0;
             font-family: "Gluten", sans-serif;
+            text-shadow: 2px 2px black;
         }
     }
 
     .middle-header {
         
         display: flex;
-        justify-content: flex-start;
+        justify-content: center;
         align-items: center;
         gap: clamp(0.2rem, 1vw, 3rem);
         margin-right: 5%;
         list-style-type: none;
+        padding: 0;
         li {
             font-size: clamp(1.5rem, 2vw, 2.5rem);
+            
         }
 
         .total-amount-header {
