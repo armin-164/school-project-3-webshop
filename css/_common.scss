@@ -22,7 +22,7 @@ header {
         flex: 1;
         padding-left: 1em;
         span {
-            font-size: clamp(2.5rem, 4vw, 4.5rem);
+            font-size: clamp(2.5rem, 4vw, 5rem);
         }
     }
 
@@ -52,10 +52,10 @@ header {
         align-items: center;
         gap: clamp(0.2rem, 1vw, 3rem);
         list-style-type: none;
-        padding-right: 1em;
+        padding: 0 1em 0 0;
 
         li {
-            font-size: clamp(1.5rem, 2vw, 2.5rem);     
+            font-size: clamp(1.5rem, 2vw, 5rem);     
         }
         .total-amount-header {
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
