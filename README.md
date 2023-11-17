@@ -18,3 +18,7 @@ This is a solo assignment so I, Armin Sadr, will be the project manager and deve
 ## Technologies used
 
 HTML, CSS (SCSS), Vanilla JS
+
+## Credits
+Rod Long
+https://unsplash.com/photos/assorted-flavor-donuts-6SMF42-JTAc
