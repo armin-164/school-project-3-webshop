@@ -12,20 +12,37 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 40px;
+    padding: 0.5% 0;
 
-    h1 {
-        padding: 10px 0;
-        margin: 0;
+    .left-header {
+        flex: 3;
+        padding-left: 1rem;
+        h1 {
+            font-size: clamp(1.5rem, 3vw, 3vw);
+            margin: 0;
+        }
+    }
+
+    .middle-header {
+        
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: clamp(0.2rem, 1vw, 3rem);
+        margin-right: 5%;
+        list-style-type: none;
+        li {
+            font-size: clamp(1.5rem, 2vw, 2.5rem);
+        }
     }
 
     .right-header {
         display: flex;
-        align-items: center;
-        gap: 10%;
-        list-style-type: none;
+        justify-content: flex-end;
+        padding-right: 20px;
 
+        span {
+            font-size: clamp(2.5rem, 4vw, 4.5rem);
+        }
     }
-
-    
 }
