@@ -22,3 +22,20 @@ HTML, CSS (SCSS), Vanilla JS
 ## Credits
 Rod Long
 https://unsplash.com/photos/assorted-flavor-donuts-6SMF42-JTAc
+
+topntp26 on Freepik
+https://www.freepik.com/free-photo/breakfast-donut-sprinkles-diet-treat_1104312.htm#page=2&query=donut%20top%20view&position=3&from_view=search&track=ais&uuid=13f0a930-a143-4e26-834e-2a87bbb12567Image
+
+fabrikasimf on Freepik
+https://www.freepik.com/free-photo/donut-isolated_22185354.htm#query=donut%20top%20view&position=47&from_view=search&track=ais&uuid=361ed25c-c8af-400e-813a-c9b18b9b57a2Image 
+
+topntp26 on Freepik
+https://www.freepik.com/free-photo/pink-sweet-icing-round-dessert_1104315.htm#page=3&query=donut%20top%20view&position=11&from_view=search&track=ais&uuid=de82d017-70d6-4456-8f58-ed19dd95ddcc
+
+by Merelize
+https://freerangestock.com/photos/39036/donut-isolated-on-white-background.html
+
+by gresey (pink-marshmellow-donut.jpg), (white-donut-oreo-crumbs.jpg), (yellow-donut-choco-sprinkles.jpg), (powdered-donut.jpg), (white-chocolate-caramel-donut.jpg), (chocolate-hazelnut-donut.jpg)
+https://depositphotos.com/portfolio-1364311.html
+
+
