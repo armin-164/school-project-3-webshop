@@ -13,7 +13,8 @@ The aim is to exercise my abilities on HTML, CSS and especially JS.
 
 ## Team
 
-This is a solo assignment so I, Armin Sadr, will be the project manager and developer.
+Solo assignment
+Developed by: Armin Sadr
 
 ## Technologies used
 
