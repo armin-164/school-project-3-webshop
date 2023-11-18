@@ -7,6 +7,14 @@ html, body, h1, h2 {
     padding: 0;
 }
 
+$headingShadow: 
+0.025em 0.075em 0 #FFB650, 
+0.05em 0.1em 0 #FFD662, 
+0.075em 0.125em 0  #FF80BF, 
+0.1em 0.15em 0 #EF5097, 
+0.125em 0.175em 0 #6868AC, 
+0.15em 0.2em 0 #90B1E0;  
+
 
 
 header {
@@ -36,12 +44,7 @@ header {
             color: #f7f2e0;
             text-align: center;
             text-transform: uppercase;
-            text-shadow: 0.025em 0.075em 0 #FFB650, 
-              0.05em 0.1em 0 #FFD662, 
-              0.075em 0.125em 0  #FF80BF, 
-              0.1em 0.15em 0 #EF5097, 
-              0.125em 0.175em 0 #6868AC, 
-              0.15em 0.2em 0 #90B1E0;      
+            text-shadow: $headingShadow;
         }
     }
 
@@ -127,7 +130,15 @@ main {
                 .product-info {
 
                     h3 {
-                        font-size: clamp(2em, 2vw, 2.5em);
+                        font-size: clamp(1.75em, 2vw, 2em);
+                        font-family: "Gluten", sans-serif;
+                        color: rgb(255, 36, 36);
+                        text-shadow: $headingShadow;  
+        
+                    }
+
+                    p {
+                        font-size: clamp(1.5em, 1vw, 2em);
                     }
 
                     .rating {
