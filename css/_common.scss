@@ -103,4 +103,25 @@ main {
         }
     }
 
+    .product-section {
+        border: 1px solid blue;
+        padding: 10%;
+
+        .product-list {
+            display: flex;
+            justify-content: center;
+            gap: 3em;
+            flex-wrap: wrap;
+            > .product {
+                border: 1px solid yellow;
+                background-color: grey;
+
+                img {
+                 object-fit: cover;
+                }
+            }
+
+        }
+    }
+
 }
