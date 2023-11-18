@@ -115,10 +115,31 @@ main {
             > .product {
                 border: 1px solid yellow;
                 background-color: grey;
+                padding: 1em 2em;
+                flex-basis: 20rem;
+              
 
                 img {
+                 width: 100%;
                  object-fit: cover;
                 }
+
+                .product-info {
+
+                    h3 {
+                        font-size: clamp(2em, 2vw, 2.5em);
+                    }
+
+                    .rating {
+                        display: flex;
+                        gap: 0.25em;
+    
+                        .checked, .fa-star-half-o, .fa-star-o {
+                            color: yellow;
+                        }
+                    }
+                }
+                
             }
 
         }
