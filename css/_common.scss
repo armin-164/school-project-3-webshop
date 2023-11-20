@@ -214,7 +214,7 @@ main {
         padding: 10%;
         background-color: beige;
         display: flex;
-        flex-direction: column;
+        flex-wrap: wrap;
         gap: 4em;
 
         .shop-cart {
@@ -224,6 +224,11 @@ main {
                 font-size: clamp(2.5em, 3vw, 5em);
                 text-align: center;
                 text-transform: uppercase;
+                height: 2em;
+                margin: 0;
+                padding-top: 1em;
+                background-color: white;
+                border-bottom: 0.1em solid red;
             }
 
             .cart-item {
@@ -298,6 +303,7 @@ main {
             }
         }
         form {
+            flex: 1;
             background-color: white;
             display: flex;
             flex-direction: column;
@@ -308,12 +314,13 @@ main {
                 font-family: $font-def;
             }
 
-            .checkout-section {
+            .form-checkout {
                 padding: 4em;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
+                width: 80%;
 
 
                 // WORK ON HERE LATER
