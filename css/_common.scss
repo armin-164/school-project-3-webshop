@@ -213,6 +213,9 @@ main {
     .section-checkout {
         padding: 10%;
         background-color: beige;
+        display: flex;
+        flex-direction: column;
+        gap: 4em;
 
         .shop-cart {
             > h3 {
@@ -294,6 +297,73 @@ main {
 
             }
         }
+        form {
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            h4 {
+                font-size: clamp(2em, 5vw, 3em);
+                text-align: center;
+                font-family: $font-def;
+            }
+
+            .checkout-section {
+                padding: 4em;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+
+                // WORK ON HERE LATER
+                #cardDetails, #invoiceDetails {
+                    display: none;
+                }
+
+                .form-row {
+                    display: flex;
+                    flex-direction: column;
+                    width: 100%;
+
+                    > label {
+                        font-size: clamp(1em, 1.5vw, 2em);
+                        font-family: $font-def;
+                    }
+
+                    > input {
+                        height: clamp(1em, 3vh, 4em);
+                        font-size: clamp(1em, 0.75w, 1.5em);
+                    }
+                }
+
+                .pay-method-and-consent {
+                    display: flex;
+                    flex-direction: column;
+                    font-family: $font-def;
+
+                    .accept-terms {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+
+                button {
+                    font-size: clamp(1em, 3vw, 1.5em);
+                    padding: 0.5em 1em;
+                    background-color: green;
+                    color: white;
+                    font-family: $font-def;
+                    font-weight: 700;
+                    width: 100%;
+                    margin: 0.25em 0;
+                }
+
+                
+            }
+            
+        }
+
     }
 
 }
