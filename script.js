@@ -8,28 +8,14 @@ addToCartButtons.forEach(btn => {
 })
 
 
-
-
-// Fetch elements info
+// Fetch the products info and add them into the cart
 function fetchItemInfo (e) {
     let product = e.closest(".product");
-
-    // Fetch img
     let productImg = product.querySelector("img");
-
-    // Fetch name
     let productName = product.querySelector("h3").textContent;
-
-    // Fetch price
     let productPrice = parseInt(product.querySelector(".product-price").textContent, 10);
-
-    // Fetch rating 
     let productRating = product.querySelectorAll(".fa"); 
-
-    // Fetch category
     let productCategory = product.querySelector(".product-category").textContent;
-
-
 
     createCartItem(productImg, productName, productCategory, productPrice, productRating);
 
@@ -46,6 +32,7 @@ function createCartItem (img, name, category, price, rating) {
 
 }
 
+// Create the left section of the item in cart
 function createItemLeftSection(img, name, category) {
 
     let itemLeftSection = document.createElement("div");
@@ -73,6 +60,7 @@ function createItemLeftSection(img, name, category) {
     return itemLeftSection;
 }
 
+// Create the right section of the item in cart
 function createItemRightSection (price, rating) {
     let itemRightSection = document.createElement("div");
     itemRightSection.classList.add("item-right-section");
@@ -119,51 +107,3 @@ function createItemRightSection (price, rating) {
     return itemRightSection;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-addToCartButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-        let product = btn.closest(".product");
-        let productPrice = parseInt(product.querySelector(".product-price").textContent, 10);
-
-        let productImg = document.createElement("img");
-        productImg.src = product.querySelector("img").src;
-
-       
-      createCartItem(productImg);
-    })
-})
-
-
-
-function createCartItem(img) {
-    const shoppingCart = document.querySelector(".shop-cart");
-    let cartItem = document.createElement("div");
-    cartItem.classList = "cart-item";
-
-    cartItem.appendChild(createItemLeftSection(img))
-
-    shoppingCart.appendChild(cartItem);
-
-
-}
-
-function createItemLeftSection(img, div) {
-    let itemLeftSection = document.createElement("div");
-    itemLeftSection.classList = "item-left-section";
-    itemLeftSection.appendChild(img)
-    return itemLeftSection;
-}*/
