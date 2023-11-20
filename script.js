@@ -1,53 +1,23 @@
 const addToCartButtons = document.querySelectorAll(".btn-add-to-cart");
 const cartItems = [];
 
-addToCartButtons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        fetchItemInfo(btn);
-    })
-})
-
-
-// Fetch the products info and add them into the cart
-function fetchItemInfo (e) {
-    let product = e.closest(".product");
-    let productImg = product.querySelector("img");
-    let productName = product.querySelector("h3").textContent;
-    let productPrice = parseInt(product.querySelector(".product-price").textContent, 10);
-    let productRating = product.querySelectorAll(".fa"); 
-    let productCategory = product.querySelector(".product-category").textContent;
-
-    createCartItem(productImg, productName, productCategory, productPrice, productRating);
-
-}
-
-function createCartItem (img, name, category, price, rating) {
-    const shoppingCart = document.querySelector(".shop-cart");
-    let cartItem = document.createElement("div");
-    cartItem.classList.add("cart-item");
-
-    cartItem.appendChild(createItemLeftSection(img, name, category));
-    cartItem.appendChild(createItemRightSection(price, rating));
-    shoppingCart.appendChild(cartItem);
-
-}
 
 // Create the left section of the item in cart
 function createItemLeftSection(img, name, category) {
 
-    let itemLeftSection = document.createElement("div");
+    const itemLeftSection = document.createElement("div");
     itemLeftSection.classList.add("item-left-section");
 
-    let itemImg = img.cloneNode(true);
+    const itemImg = img.cloneNode(true);
 
 
-    let itemInfo = document.createElement("div");
+    const itemInfo = document.createElement("div");
     itemInfo.classList.add("item-info");
 
-    let itemName = document.createElement("h4");
+    const itemName = document.createElement("h4");
     itemName.innerText = name;
 
-    let itemCategory = document.createElement("p");
+    const itemCategory = document.createElement("p");
     itemCategory.innerText = `Category: ${category}`;
 
 
@@ -62,41 +32,41 @@ function createItemLeftSection(img, name, category) {
 
 // Create the right section of the item in cart
 function createItemRightSection (price, rating) {
-    let itemRightSection = document.createElement("div");
+    const itemRightSection = document.createElement("div");
     itemRightSection.classList.add("item-right-section");
 
-        let itemAmountControl = document.createElement("div");
+        const itemAmountControl = document.createElement("div");
         itemAmountControl.classList.add("item-amount-control");
 
-            let reduceBtn = document.createElement("button");
+            const reduceBtn = document.createElement("button");
             reduceBtn.innerText = "-";
 
-            let itemAmountInput = document.createElement("input");
+            const itemAmountInput = document.createElement("input");
             itemAmountInput.type = "text";
 
-            let increaseBtn = document.createElement("button");
+            const increaseBtn = document.createElement("button");
             increaseBtn.innerText = "+";
         
         itemAmountControl.appendChild(reduceBtn);
         itemAmountControl.appendChild(itemAmountInput);
         itemAmountControl.appendChild(increaseBtn);
 
-        let itemPriceContainer = document.createElement("div");
+        const itemPriceContainer = document.createElement("div");
         itemPriceContainer.classList.add("item-price");
 
-            let itemPrice = document.createElement("span");
+            const itemPrice = document.createElement("span");
             itemPrice.innerText = `${price}kr`;
         itemPriceContainer.appendChild(itemPrice);
 
 
-        let itemRatingContainer = document.createElement("div");
+        const itemRatingContainer = document.createElement("div");
         itemRatingContainer.classList.add("rating");
         rating.forEach((span) => {
-            let clonedSpan = span.cloneNode(true);
+            const clonedSpan = span.cloneNode(true);
             itemRatingContainer.appendChild(clonedSpan);
         })
 
-        let removeText = document.createElement("span");
+        const removeText = document.createElement("span");
         removeText.innerText = "Remove from cart";
 
 
@@ -107,3 +77,36 @@ function createItemRightSection (price, rating) {
     return itemRightSection;
 }
 
+
+function createCartItem (img, name, category, price, rating) {
+    const shoppingCart = document.querySelector(".shop-cart");
+    const cartItem = document.createElement("div");
+    cartItem.classList.add("cart-item");
+
+    cartItem.appendChild(createItemLeftSection(img, name, category));
+    cartItem.appendChild(createItemRightSection(price, rating));
+    shoppingCart.appendChild(cartItem);
+
+}
+
+
+
+// Fetch the products info and add them into the cart
+function fetchItemInfo (e) {
+    const product = e.closest(".product");
+    const productImg = product.querySelector("img");
+    const productName = product.querySelector("h3").textContent;
+    const productPrice = parseInt(product.querySelector(".product-price").textContent, 10);
+    const productRating = product.querySelectorAll(".fa"); 
+    const productCategory = product.querySelector(".product-category").textContent;
+
+    createCartItem(productImg, productName, productCategory, productPrice, productRating);
+
+}
+
+
+addToCartButtons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        fetchItemInfo(btn);
+    })
+})
