@@ -1,4 +1,5 @@
 const addToCartButtons = document.querySelectorAll(".btn-add-to-cart");
+const removeCartItemButtons = document.querySelector(".remove-item-from-cart")
 const cartItems = [];
 
 
@@ -67,7 +68,12 @@ function createItemRightSection (price, rating) {
         })
 
         const removeText = document.createElement("span");
+        removeText.classList.add("remove-item-from-cart");
         removeText.innerText = "Remove from cart";
+
+        removeText.addEventListener("click", () => {
+            removeText.closest(".cart-item").remove();
+        })
 
 
     itemRightSection.appendChild(itemAmountControl);
