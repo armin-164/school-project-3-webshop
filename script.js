@@ -16,3 +16,21 @@ function fetchItemInfo (e) {
     const productCategory = product.querySelector(".product-category").innerText;
 
 }
+
+function returnTotalRating(element) {
+    let checkedStars = 0;
+    let halfStars = 0;
+
+    element.forEach((star) => {
+        if (star.classList.contains("checked")) {
+            checkedStars++;
+        }
+
+        else if (star.classList.contains("fa-star-half-o")) {
+            halfStars++;
+        }
+    });
+
+    const totalRating = checkedStars + (0.5 * halfStars);
+    return totalRating;
+}
