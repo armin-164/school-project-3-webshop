@@ -1,5 +1,5 @@
 const addToCartButtons = document.querySelectorAll(".btn-add-to-cart");
-
+const cartArray = [];
 
 addToCartButtons.forEach(btn => {
     btn.addEventListener("click", () => {
@@ -15,6 +15,15 @@ function fetchItemInfo (e) {
     const productRating = product.querySelectorAll(".fa"); 
     const productCategory = product.querySelector(".product-category").innerText;
 
+    const cartItem = {
+        name: productName,
+        src: productImg, 
+        price: productPrice,
+        rating: returnTotalRating(productRating),
+        category: productCategory
+      };
+
+    cartArray.push(cartItem);
 }
 
 function returnTotalRating(element) {
