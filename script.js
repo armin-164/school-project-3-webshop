@@ -57,6 +57,7 @@ function updateCartDOM() {
     cartItem.classList.add('cart-item');
     cartArray.forEach((obj) => {
         cartItem.appendChild(createItemLeftSection(obj.img, obj.name, obj.category));
+        cartItem.appendChild(createItemRightSection(obj.price, obj.rating));
     })
     shoppingCart.appendChild(cartItem);
 }
@@ -115,14 +116,6 @@ function createItemRightSection (price, rating) {
             itemPrice.innerText = `${price}kr`;
         itemPriceContainer.appendChild(itemPrice);
 
-
-
-
-        //////////////////// WORK HERE
-        
-
-        ///////////////////
-
         const removeText = document.createElement("span");
         removeText.classList.add("remove-item-from-cart");
         removeText.innerText = "Remove from cart";
@@ -134,8 +127,9 @@ function createItemRightSection (price, rating) {
 
     itemRightSection.appendChild(itemAmountControl);
     itemRightSection.appendChild(itemPriceContainer);
-    itemRightSection.appendChild(itemRatingContainer);
+    itemRightSection.appendChild(calculate_And_Return_Rating(rating));
     itemRightSection.appendChild(removeText);
+    
     return itemRightSection;
 }
 
@@ -147,5 +141,27 @@ function calculate_And_Return_Rating(rating) {
     itemRatingContainer.classList.add("rating");
 
     const checkedStars = Math.floor(rating); 
+    const halfStars = rating % 1 === 0.5;
+    const emptyStars = 5 - Math.round(rating);
+
+    for (let i = 0; i < checkedStars; i++) {
+        const starSpanElement = document.createElement('span');
+        starSpanElement.classList.add('fa', 'fa-star', 'checked');
+        itemRatingContainer.appendChild(starSpanElement);
+    }
+
+    if (halfStars) {
+        const halfStarSpanElement = document.createElement('span');
+        halfStarSpanElement.classList.add('fa', 'fa-star-half-o');
+        itemRatingContainer.appendChild(halfStarSpanElement);
+    }
+
+    for (let i = 0; i < emptyStars; i++) {
+        const emptyStarSpanElement = document.createElement('span');
+        emptyStarSpanElement.classList.add('fa', 'fa-star-half-o');
+        itemRatingContainer.appendChild(emptyStarSpanElement);
+        
+    }
+    return itemRatingContainer;
 
 }
