@@ -3,6 +3,7 @@ const cartArray = [];
 
 addToCartButtons.forEach(btn => {
     btn.addEventListener("click", () => {
+        resetCart();
         fetchItemInfo(btn);
     })
 })
@@ -17,7 +18,7 @@ function fetchItemInfo (e) {
 
     const cartItem = {
         name: productName,
-        src: productImg, 
+        img: productImg, 
         price: productPrice,
         rating: returnTotalRating(productRating),
         category: productCategory
@@ -43,3 +44,9 @@ function returnTotalRating(element) {
     const totalRating = checkedStars + (0.5 * halfStars);
     return totalRating;
 }
+
+function resetCart() {
+    const allCartItems = document.querySelectorAll('.cart-item');
+    allCartItems.forEach(item => item.remove());
+}
+
