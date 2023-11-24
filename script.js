@@ -1,10 +1,12 @@
 const addToCartButtons = document.querySelectorAll(".btn-add-to-cart");
+const shoppingCart = document.querySelector('.shop-cart');
 const cartArray = [];
 
 addToCartButtons.forEach(btn => {
     btn.addEventListener("click", () => {
         resetCart();
         fetchItemInfo(btn);
+        updateCartDOM();
     })
 })
 
@@ -50,3 +52,38 @@ function resetCart() {
     allCartItems.forEach(item => item.remove());
 }
 
+function updateCartDOM() {
+    const cartItem = document.createElement('div');
+    cartItem.classList.add('cart-item');
+    cartArray.forEach((obj) => {
+        cartItem.appendChild(createItemLeftSection(obj.img, obj.name, obj.category));
+    })
+    shoppingCart.appendChild(cartItem);
+}
+
+function createItemLeftSection(img, name, category) {
+
+    const itemLeftSection = document.createElement("div");
+    itemLeftSection.classList.add("item-left-section");
+
+    const itemImg = img.cloneNode(true);
+
+
+    const itemInfo = document.createElement("div");
+    itemInfo.classList.add("item-info");
+
+    const itemName = document.createElement("h4");
+    itemName.innerText = name;
+
+    const itemCategory = document.createElement("p");
+    itemCategory.innerText = `Category: ${category}`;
+
+
+    itemInfo.appendChild(itemName);
+    itemInfo.appendChild(itemCategory);
+
+    itemLeftSection.appendChild(itemImg);
+    itemLeftSection.appendChild(itemInfo);
+
+    return itemLeftSection;
+}
