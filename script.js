@@ -53,13 +53,16 @@ function resetCart() {
 }
 
 function updateCartDOM() {
-    const cartItem = document.createElement('div');
-    cartItem.classList.add('cart-item');
+
     cartArray.forEach((obj) => {
+        const cartItem = document.createElement('div');
+        cartItem.classList.add('cart-item');
+
         cartItem.appendChild(createItemLeftSection(obj.img, obj.name, obj.category));
         cartItem.appendChild(createItemRightSection(obj.price, obj.rating));
+        
+        shoppingCart.appendChild(cartItem);
     })
-    shoppingCart.appendChild(cartItem);
 }
 
 function createItemLeftSection(img, name, category) {
@@ -129,7 +132,7 @@ function createItemRightSection (price, rating) {
     itemRightSection.appendChild(itemPriceContainer);
     itemRightSection.appendChild(calculate_And_Return_Rating(rating));
     itemRightSection.appendChild(removeText);
-    
+
     return itemRightSection;
 }
 
