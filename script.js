@@ -87,3 +87,65 @@ function createItemLeftSection(img, name, category) {
 
     return itemLeftSection;
 }
+
+function createItemRightSection (price, rating) {
+    const itemRightSection = document.createElement("div");
+    itemRightSection.classList.add("item-right-section");
+
+        const itemAmountControl = document.createElement("div");
+        itemAmountControl.classList.add("item-amount-control");
+
+            const reduceBtn = document.createElement("button");
+            reduceBtn.innerText = "-";
+
+            const itemAmountInput = document.createElement("input");
+            itemAmountInput.type = "text";
+
+            const increaseBtn = document.createElement("button");
+            increaseBtn.innerText = "+";
+        
+        itemAmountControl.appendChild(reduceBtn);
+        itemAmountControl.appendChild(itemAmountInput);
+        itemAmountControl.appendChild(increaseBtn);
+
+        const itemPriceContainer = document.createElement("div");
+        itemPriceContainer.classList.add("item-price");
+
+            const itemPrice = document.createElement("span");
+            itemPrice.innerText = `${price}kr`;
+        itemPriceContainer.appendChild(itemPrice);
+
+
+
+
+        //////////////////// WORK HERE
+        
+
+        ///////////////////
+
+        const removeText = document.createElement("span");
+        removeText.classList.add("remove-item-from-cart");
+        removeText.innerText = "Remove from cart";
+
+        removeText.addEventListener("click", () => {
+            removeText.closest(".cart-item").remove();
+        })
+
+
+    itemRightSection.appendChild(itemAmountControl);
+    itemRightSection.appendChild(itemPriceContainer);
+    itemRightSection.appendChild(itemRatingContainer);
+    itemRightSection.appendChild(removeText);
+    return itemRightSection;
+}
+
+
+
+
+function calculate_And_Return_Rating(rating) {
+    const itemRatingContainer = document.createElement("div");
+    itemRatingContainer.classList.add("rating");
+
+    const checkedStars = Math.floor(rating); 
+
+}
