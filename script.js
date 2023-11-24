@@ -54,6 +54,8 @@ function resetCart() {
 }
 
 function updateCartDOM() {
+    const cartSumDOM = document.querySelector('.cart-total-sum');
+    let cartSum = 0;
   cartArray.forEach((obj) => {
     const cartItem = document.createElement('div');
     cartItem.classList.add('cart-item');
@@ -62,6 +64,9 @@ function updateCartDOM() {
       createItemLeftSection(obj.img, obj.name, obj.category),
     );
     cartItem.appendChild(createItemRightSection(obj.price, obj.rating));
+
+    cartSum += obj.price;
+    cartSumDOM.innerText = `Your Total is: ${cartSum}kr`;
 
     shoppingCart.appendChild(cartItem);
   });
