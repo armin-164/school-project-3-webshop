@@ -129,6 +129,7 @@ function createItemRightSection(price, rating) {
 
   removeText.addEventListener('click', () => {
     removeText.closest('.cart-item').remove();
+    removeFromCartArray(removeText);
   });
 
   itemRightSection.appendChild(itemAmountControl);
@@ -137,6 +138,12 @@ function createItemRightSection(price, rating) {
   itemRightSection.appendChild(removeText);
 
   return itemRightSection;
+}
+
+function removeFromCartArray (e) {
+    const productName = e.closest('.cart-item').querySelector("h4").innerText;
+    const itemIndex = cartArray.findIndex(obj => obj.name === productName);
+    cartArray.splice(itemIndex, 1);
 }
 
 function calculate_And_Return_Rating(rating) {
