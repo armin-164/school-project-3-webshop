@@ -10,12 +10,6 @@ filterList.addEventListener('change', () => {
 });
 
 
-
-
-
-
-
-
 function filterProducts (filter_value) {
     const allProductsDOM = document.querySelectorAll('.product');
     const productList = document.querySelector('.product-list');
@@ -28,7 +22,7 @@ function filterProducts (filter_value) {
             element: product,
             name: product.querySelector('h3').innerText,
             rating: returnTotalRating(ratings),
-            price: product.querySelector('.product-price').innerText
+            price: parseInt(product.querySelector('.product-price').innerText, 10,)
         }
         
         productsArray.push(productObject);
@@ -38,14 +32,37 @@ function filterProducts (filter_value) {
     if (filter_value === "filter-name") {
         productList.innerHTML = "";
         sortPropertyAlphabetically(productsArray);
-
         productsArray.forEach((obj) => {
             productList.appendChild(obj.element);
         })
     }
-    console.log(productsArray);
-    console.log(filter_value);
 
+    else if (filter_value === "filter-price-down") {
+        productList.innerHTML = "";
+        productsArray.sort((a, b) => b.price - a.price);
+        
+        productsArray.forEach((obj) => {
+            productList.appendChild(obj.element);
+        })
+    }
+
+    else if (filter_value === "filter-price-up") {
+        productList.innerHTML = "";
+        productsArray.sort((a, b) => a.price - b.price);
+        
+        productsArray.forEach((obj) => {
+            productList.appendChild(obj.element);
+        })
+    }
+
+    else if (filter_value === "filter-rating") {
+        productList.innerHTML = "";
+        productsArray.sort((a, b) => b.rating - a.rating);
+        
+        productsArray.forEach((obj) => {
+            productList.appendChild(obj.element);
+        })
+    }
 }
 
 
