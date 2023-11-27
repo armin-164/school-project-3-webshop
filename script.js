@@ -37,18 +37,7 @@ function filterProducts (filter_value) {
 
     if (filter_value === "filter-name") {
         productList.innerHTML = "";
-        productsArray.sort((a, b) => {
-            const nameA = a.name.toUpperCase();
-            const nameB = b.name.toUpperCase();
-            if (nameA < nameB) {
-              return -1;
-            }
-            if (nameA > nameB) {
-              return 1;
-            }
-          
-            return 0;
-          });
+        sortPropertyAlphabetically(productsArray);
 
         productsArray.forEach((obj) => {
             productList.appendChild(obj.element);
@@ -57,7 +46,22 @@ function filterProducts (filter_value) {
     console.log(productsArray);
     console.log(filter_value);
 
-    
+}
+
+
+function sortPropertyAlphabetically (property) {
+    property.sort((a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+      
+        return 0;
+      });
 }
 
 
