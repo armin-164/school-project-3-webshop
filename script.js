@@ -84,7 +84,26 @@ function sortPropertyAlphabetically (property) {
 
 
 
+filterListCategories.addEventListener('change', () => {
+    hideProducts(filterListCategories.value);
+});
 
+function hideProducts(filter_value) {
+    const allProductsDOM = document.querySelectorAll('.product');
+
+    allProductsDOM.forEach((product) => {
+        const category = product.querySelector('.product-category');
+
+        if (filter_value !== category.dataset.value) {
+            product.style.display = "none";
+        }
+
+        else {
+            product.style.display = "block";
+        }
+    })
+    
+}
 
 
 
