@@ -1,6 +1,71 @@
 const addToCartButtons = document.querySelectorAll('.btn-add-to-cart');
 const shoppingCart = document.querySelector('.shop-cart');
 const cartArray = [];
+const filterList = document.querySelector('select[name="filter-list"]');
+const filterListCategories = document.querySelector('select[name="filter-category"]');
+
+
+filterList.addEventListener('change', () => {
+    filterProducts(filterList.value)
+});
+
+
+
+
+
+
+
+
+function filterProducts (filter_value) {
+    const allProductsDOM = document.querySelectorAll('.product');
+    const productList = document.querySelector('.product-list');
+    let productsArray = [];
+
+    allProductsDOM.forEach((product) => {
+        const ratings = product.querySelectorAll('.fa');
+
+        const productObject = {
+            element: product,
+            name: product.querySelector('h3').innerText,
+            rating: returnTotalRating(ratings),
+            price: product.querySelector('.product-price').innerText
+        }
+        
+        productsArray.push(productObject);
+
+    })
+
+    if (filter_value === "filter-name") {
+        productList.innerHTML = "";
+        productsArray.sort((a, b) => {
+            const nameA = a.name.toUpperCase();
+            const nameB = b.name.toUpperCase();
+            if (nameA < nameB) {
+              return -1;
+            }
+            if (nameA > nameB) {
+              return 1;
+            }
+          
+            return 0;
+          });
+
+        productsArray.forEach((obj) => {
+            productList.appendChild(obj.element);
+        })
+    }
+    console.log(productsArray);
+    console.log(filter_value);
+
+    
+}
+
+
+
+
+
+
+
 
 addToCartButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
