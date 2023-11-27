@@ -132,6 +132,7 @@ function fetchItemInfo(e) {
     price: productPrice,
     rating: returnTotalRating(productRating),
     category: productCategory,
+    amount: 1,
   };
 
   cartArray.push(cartItem);
@@ -168,7 +169,7 @@ function updateCartDOM() {
     cartItem.appendChild(
       createItemLeftSection(obj.img, obj.name, obj.category),
     );
-    cartItem.appendChild(createItemRightSection(obj.price, obj.rating));
+    cartItem.appendChild(createItemRightSection(obj.price, obj.rating, obj.amount));
 
     cartSum += obj.price;
     cartSumDOM.innerText = `Your Total is: ${cartSum}kr`;
@@ -201,7 +202,7 @@ function createItemLeftSection(img, name, category) {
   return itemLeftSection;
 }
 
-function createItemRightSection(price, rating) {
+function createItemRightSection(price, rating, amount) {
   const itemRightSection = document.createElement('div');
   itemRightSection.classList.add('item-right-section');
 
@@ -212,7 +213,9 @@ function createItemRightSection(price, rating) {
   reduceBtn.innerText = '-';
 
   const itemAmountInput = document.createElement('input');
-  itemAmountInput.type = 'text';
+  itemAmountInput.type = 'number';
+  itemAmountInput.readOnly = 'true';
+  itemAmountInput.value = amount;
 
   const increaseBtn = document.createElement('button');
   increaseBtn.innerText = '+';
@@ -224,8 +227,19 @@ function createItemRightSection(price, rating) {
   const itemPriceContainer = document.createElement('div');
   itemPriceContainer.classList.add('item-price');
 
-  const itemPrice = document.createElement('span');
+  let itemPrice = document.createElement('span');
+  itemPrice.classList.add('item-total-price');
   itemPrice.innerText = `${price}kr`;
+
+  reduceBtn.addEventListener("click", (e) => {
+    increaseOrDecrease(e, "-", price, itemAmountInput);
+  })
+
+  increaseBtn.addEventListener("click", (e) => {
+    increaseOrDecrease(e, "+", price, itemAmountInput);
+  })
+
+
   itemPriceContainer.appendChild(itemPrice);
 
   const removeText = document.createElement('span');
@@ -243,6 +257,34 @@ function createItemRightSection(price, rating) {
   itemRightSection.appendChild(removeText);
 
   return itemRightSection;
+}
+
+function increaseOrDecrease(e, symbol, price, element) {
+    const cartItem = e.target.closest('.cart-item');
+    const name = cartItem.querySelector('h4').innerText;
+    let itemPriceDOM = e.target.closest('.item-right-section').querySelector('.item-total-price');
+
+    cartArray.forEach((obj) => {
+
+        if (name === obj.name && obj.amount >= 1 && symbol === "+") {
+            obj.amount += 1;
+            element.value = obj.amount;
+            obj.price = price * element.value;
+
+            itemPriceDOM.innerText = `${obj.price}kr`;
+
+        }
+
+        else if (name === obj.name && obj.amount >=2  && symbol === "-") {
+            obj.amount -= 1;
+            obj.price -= price;
+
+            element.value = obj.amount;
+            itemPriceDOM.innerText = `${obj.price}kr`;
+        }    
+    })
+
+
 }
 
 function removeFromCartArray (e) {
