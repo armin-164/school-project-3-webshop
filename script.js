@@ -160,22 +160,28 @@ function resetCart() {
 }
 
 function updateCartDOM() {
-    const cartSumDOM = document.querySelector('.cart-total-sum');
-    let cartSum = 0;
-  cartArray.forEach((obj) => {
+    cartArray.forEach((obj) => {
     const cartItem = document.createElement('div');
     cartItem.classList.add('cart-item');
 
     cartItem.appendChild(
       createItemLeftSection(obj.img, obj.name, obj.category),
     );
-    cartItem.appendChild(createItemRightSection(obj.price, obj.rating, obj.amount));
 
-    cartSum += obj.price;
-    cartSumDOM.innerText = `Your Total is: ${cartSum}kr`;
+    cartItem.appendChild(createItemRightSection(obj.price, obj.rating, obj.amount));
+    
+    updateTotalPrice();
 
     shoppingCart.appendChild(cartItem);
   });
+}
+
+function updateTotalPrice() {
+    let cartSumDOM = document.querySelector('.cart-total-sum');
+    let cartSum = 0;
+    cartArray.forEach((item) => cartSum += item.price);
+
+    cartSumDOM.innerText = `Your Total is: ${cartSum}kr`;
 }
 
 function createItemLeftSection(img, name, category) {
@@ -233,10 +239,12 @@ function createItemRightSection(price, rating, amount) {
 
   reduceBtn.addEventListener("click", (e) => {
     increaseOrDecrease(e, "-", price, itemAmountInput);
+    updateTotalPrice();
   })
 
   increaseBtn.addEventListener("click", (e) => {
     increaseOrDecrease(e, "+", price, itemAmountInput);
+    updateTotalPrice();
   })
 
 
