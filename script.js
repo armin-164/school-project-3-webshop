@@ -353,22 +353,27 @@ const paymentSelector = document.querySelector(".payment-method");
 
 submitOrderBtn.addEventListener("click", submitOrder); 
 
-function submitOrder() {
+function stringIncludesNumbers(str) {
+    return /\d/.test(str);
+}
 
+function submitOrder() {
+    /*
     if (cartArray.length < 1) {
         alert("Your cart is empty");
     }
-    
-    const userFirstName = document.querySelector('.user-firstname');
-    const userLastName = document.querySelector('.user-lastname');
+    */
+    const userFirstAndLastName = document.querySelectorAll('.user-name');
 
-    stringIncludesNumbers(userFirstName.value) ?  userFirstName.setCustomValidity('Please exclude any numbers') :  userFirstName.setCustomValidity('');
-    stringIncludesNumbers(userLastName.value) ?  userLastName.setCustomValidity('Please exclude any numbers') :  userLastName.setCustomValidity('');
-    
+    userFirstAndLastName.forEach((name) => {
+        if (stringIncludesNumbers(name.value)) {
+            name.setCustomValidity('Please exclude any numbers');
+        }
+
+        else {
+            name.setCustomValidity('');
+        }
+    })
 
     
-}
-
-function stringIncludesNumbers(str) {
-    return /\d/.test(str);
 }
