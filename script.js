@@ -353,8 +353,8 @@ const paymentSelector = document.querySelector(".payment-method");
 
 submitOrderBtn.addEventListener("click", submitOrder); 
 
-function stringIncludesNumbers(str) {
-    return /\d/.test(str);
+function hasNumbersOrSymbols(str) {
+    return /[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(str);
 }
 
 function submitOrder() {
@@ -366,8 +366,8 @@ function submitOrder() {
     const userFirstAndLastName = document.querySelectorAll('.user-name');
 
     userFirstAndLastName.forEach((name) => {
-        if (stringIncludesNumbers(name.value)) {
-            name.setCustomValidity('Please exclude any numbers');
+        if (hasNumbersOrSymbols(name.value)) {
+            name.setCustomValidity('Please exclude any numbers/symbols');
         }
 
         else {
