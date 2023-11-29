@@ -345,3 +345,14 @@ function calculate_And_Return_Rating(rating) {
   }
   return itemRatingContainer;
 }
+
+
+const submitOrderBtn = document.querySelector('.submit-btn');
+const resetOrderBtn = document.querySelector('.reset-btn');
+const paymentSelector = document.querySelector(".payment-method");
+
+submitOrderBtn.addEventListener("click", submitOrder); 
+
+function submitOrder() {
+    
+}
