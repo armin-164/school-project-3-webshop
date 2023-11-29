@@ -362,14 +362,8 @@ function submitOrder() {
     const userFirstName = document.querySelector('.user-firstname');
     const userLastName = document.querySelector('.user-lastname');
 
-    if (stringIncludesNumbers(userFirstName.value)) {
-        userFirstName.setCustomValidity('Please exclude any numbers');
-    }
-
-    else {
-        userFirstName.setCustomValidity('');
-    }
-    
+    stringIncludesNumbers(userFirstName.value) ?  userFirstName.setCustomValidity('Please exclude any numbers') :  userFirstName.setCustomValidity('');
+    stringIncludesNumbers(userLastName.value) ?  userLastName.setCustomValidity('Please exclude any numbers') :  userLastName.setCustomValidity('');
     
 
     
