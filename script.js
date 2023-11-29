@@ -354,5 +354,27 @@ const paymentSelector = document.querySelector(".payment-method");
 submitOrderBtn.addEventListener("click", submitOrder); 
 
 function submitOrder() {
+
+    if (cartArray.length < 1) {
+        alert("Your cart is empty");
+    }
     
+    const userFirstName = document.querySelector('.user-firstname');
+    const userLastName = document.querySelector('.user-lastname');
+
+    if (stringIncludesNumbers(userFirstName.value)) {
+        userFirstName.setCustomValidity('Please exclude any numbers');
+    }
+
+    else {
+        userFirstName.setCustomValidity('');
+    }
+    
+    
+
+    
+}
+
+function stringIncludesNumbers(str) {
+    return /\d/.test(str);
 }
