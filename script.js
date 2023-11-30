@@ -355,16 +355,31 @@ submitOrderBtn.addEventListener("click", () => {
     validateOrderForm();
 }); 
 
-function validateStringForNumbersOrSymbols(str) {
-    const hasNumbersOrSymbols = /[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(str.value);
 
-    if (hasNumbersOrSymbols) {
-        str.setCustomValidity('Please exclude any numbers/symbols');
+function validateInputField(negate, regex, input, msg ) {
+    const inputIsValid = regex.test(input.value);
+    if (negate === false) {
+
+        if (inputIsValid) {
+            input.setCustomValidity(msg);
+        }
+    
+        else {
+            input.setCustomValidity('');
+        }
     }
 
     else {
-        str.setCustomValidity('');
+
+        if (!inputIsValid) {
+            input.setCustomValidity(msg);
+        }
+    
+        else {
+            input.setCustomValidity('');
+        }
     }
+    
 }
 
 function validateOrderForm() {
@@ -373,31 +388,22 @@ function validateOrderForm() {
         alert("Your cart is empty");
     }
     */
+    const hasNumbersOrSymbols = /[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
+    const containsFiveNumbers = /^\d{5}$/;
+    const validPhoneNumber = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+
+
     const userFirstAndLastName = document.querySelectorAll('.user-name');
-    userFirstAndLastName.forEach(name => validateStringForNumbersOrSymbols(name));
+    userFirstAndLastName.forEach(name => validateInputField(false, hasNumbersOrSymbols, name, "Hey"));
 
     const userPostalCode = document.querySelector('.user-postalcode');
-    const postalCodeContainsFiveNumbers = /^\d{5}$/.test(userPostalCode.value);
+    validateInputField(true, containsFiveNumbers, userPostalCode, "Invalid Postal Code");
 
-    if (!postalCodeContainsFiveNumbers) {
-        userPostalCode.setCustomValidity('Invalid postal code');
-    }
-
-    else {
-        userPostalCode.setCustomValidity('');
-    }
 
     const userCity = document.querySelector('.user-city');
-    validateStringForNumbersOrSymbols(userCity); 
+    validateInputField(false, hasNumbersOrSymbols, userCity, 'Please exclude any numbers/symbols');
     
     const userPhone = document.querySelector('.user-phone');
-    const phoneNumberIsValid = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(userPhone.value);
+    validateInputField(true, validPhoneNumber, userCity, 'Invalid Phone Number');
 
-    if (!phoneNumberIsValid) {
-        userPhone.setCustomValidity('Please write a valid phone number');
-    }
-
-    else {
-        userPhone.setCustomValidity('');
-    }
 }
