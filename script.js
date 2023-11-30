@@ -403,6 +403,11 @@ function validateOrderForm() {
     const hasNumbersOrSymbols = /[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
     const containsFiveNumbers = /^\d{5}$/;
     const validPhoneNumber = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
+    const containsSixteenNumbers = /^\d{16}$/;
+    const isYearAndMonth = /^\d{4}\/\d{2}$/;
+    const containsThreeNumbers = /^\d{3}$/;
+    const isAnSSN = /^(\d{10}|\d{12})$/;
+
 
 
     const userFirstAndLastName = document.querySelectorAll('.user-name');
@@ -419,6 +424,15 @@ function validateOrderForm() {
     validateInputField(true, validPhoneNumber, userPhone, 'Invalid Phone Number');
 
     const userCard = document.querySelector('.user-card-number');
-    console.log(userCard.value);
+    validateInputField(true, containsSixteenNumbers, userCard, 'Invalid Card Number')
+
+    const userCardExpiryDate = document.querySelector('.user-card-expiry-date');
+    validateInputField(true, isYearAndMonth, userCardExpiryDate, 'Please write in this format: YYYY/MM');
+
+    const userCardCvc = document.querySelector('.user-card-cvc');
+    validateInputField(true, containsThreeNumbers, userCardCvc, 'Please write a three-digit CVC');
+
+    const userSSN = document.querySelector('.user-ssn');
+    validateInputField(true, isAnSSN, userSSN, 'Please write your SSN with 10 or 12 digits');
 
 }
