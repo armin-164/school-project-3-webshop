@@ -353,8 +353,16 @@ const paymentSelector = document.querySelector(".payment-method");
 
 submitOrderBtn.addEventListener("click", submitOrder); 
 
-function hasNumbersOrSymbols(str) {
-    return /[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(str);
+function validateStringForNumbersOrSymbols(str) {
+    const hasNumbersOrSymbols = /[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(str.value);
+
+    if (hasNumbersOrSymbols) {
+        str.setCustomValidity('Please exclude any numbers/symbols');
+    }
+
+    else {
+        str.setCustomValidity('');
+    }
 }
 
 function submitOrder() {
@@ -364,17 +372,7 @@ function submitOrder() {
     }
     */
     const userFirstAndLastName = document.querySelectorAll('.user-name');
-
-    userFirstAndLastName.forEach((name) => {
-        if (hasNumbersOrSymbols(name.value)) {
-            name.setCustomValidity('Please exclude any numbers/symbols');
-        }
-
-        else {
-            name.setCustomValidity('');
-        }
-    });
-
+    userFirstAndLastName.forEach(name => validateStringForNumbersOrSymbols(name));
 
     const userPostalCode = document.querySelector('.user-postalcode');
     const postalCodeContainsFiveNumbers = /^\d{5}$/.test(userPostalCode.value);
@@ -388,15 +386,5 @@ function submitOrder() {
     }
 
     const userCity = document.querySelector('.user-city');
-
-    if (hasNumbersOrSymbols(userCity.value)) {
-        userCity.setCustomValidity('Please exclude any numbers/symbols');
-    }
-
-    else {
-        userCity.setCustomValidity('');
-    }
-
-
-    
+    validateStringForNumbersOrSymbols(userCity);  
 }
