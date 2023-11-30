@@ -373,7 +373,30 @@ function submitOrder() {
         else {
             name.setCustomValidity('');
         }
-    })
+    });
+
+
+    const userPostalCode = document.querySelector('.user-postalcode');
+    const postalCodeContainsFiveNumbers = /^\d{5}$/.test(userPostalCode.value);
+
+    if (!postalCodeContainsFiveNumbers) {
+        userPostalCode.setCustomValidity('Invalid postal code');
+    }
+
+    else {
+        userPostalCode.setCustomValidity('');
+    }
+
+    const userCity = document.querySelector('.user-city');
+
+    if (hasNumbersOrSymbols(userCity.value)) {
+        userCity.setCustomValidity('Please exclude any numbers/symbols');
+    }
+
+    else {
+        userCity.setCustomValidity('');
+    }
+
 
     
 }
