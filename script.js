@@ -358,23 +358,10 @@ submitOrderBtn.addEventListener("click", () => {
 
 function validateInputField(negate, regex, input, msg ) {
     const doesInputMatchRegex = regex.test(input.value);
-    if (negate === false) {
-
-        if (doesInputMatchRegex) {
-            input.setCustomValidity(msg);
-        }
     
-        else {
-            input.setCustomValidity('');
-        }
-    }
-
-    else {
-
-        if (!doesInputMatchRegex) {
-            input.setCustomValidity(msg);
-        }
-    
+    if ((negate && !doesInputMatchRegex) || (!negate && doesInputMatchRegex)) {
+        input.setCustomValidity(msg);
+    } else {
         input.setCustomValidity('');
     }
     
