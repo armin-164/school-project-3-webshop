@@ -423,8 +423,8 @@ function validateOrderForm() {
     const userPhone = document.querySelector('.user-phone');
     validateInputField(true, validPhoneNumber, userPhone, 'Invalid Phone Number');
 
-    const userCard = document.querySelector('.user-card-number');
-    validateInputField(true, containsSixteenNumbers, userCard, 'Invalid Card Number')
+    const userCardNumber = document.querySelector('.user-card-number');
+    validateInputField(true, containsSixteenNumbers, userCardNumber, 'Invalid Card Number')
 
     const userCardExpiryDate = document.querySelector('.user-card-expiry-date');
     validateInputField(true, isYearAndMonth, userCardExpiryDate, 'Please write in this format: YYYY/MM');
