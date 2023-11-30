@@ -366,15 +366,24 @@ paymentSelector.addEventListener('change', () => {
     displayPaymentMethod(paymentSelector.value);
 });
 
+function removePaymentInfo(element) {
+    const allInputs = element.querySelectorAll('input');
+    allInputs.forEach((input) => {
+        input.value = "";
+    })
+}
+
 function displayPaymentMethod(method) {
     const invoicePaymentDiv = document.querySelector('#payment-invoice');
     const cardPaymentDiv = document.querySelector('#payment-card');
 
     if (method === 'invoice') {
+        removePaymentInfo(cardPaymentDiv);
         cardPaymentDiv.style.display = "none";
         invoicePaymentDiv.style.display = "flex";
     }
     else if (method === 'card') {
+        removePaymentInfo(invoicePaymentDiv);
         invoicePaymentDiv.style.display = "none";
         cardPaymentDiv.style.display = "flex";
     }
@@ -408,5 +417,8 @@ function validateOrderForm() {
     
     const userPhone = document.querySelector('.user-phone');
     validateInputField(true, validPhoneNumber, userPhone, 'Invalid Phone Number');
+
+    const userCard = document.querySelector('.user-card-number');
+    console.log(userCard.value);
 
 }
