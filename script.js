@@ -351,6 +351,16 @@ const submitOrderBtn = document.querySelector('.submit-btn');
 const resetOrderBtn = document.querySelector('.reset-btn');
 const paymentSelector = document.querySelector(".payment-method");
 
+function validateInputField(negate, regex, input, msg ) {
+    const doesInputMatchRegex = regex.test(input.value);
+
+    if ((negate && !doesInputMatchRegex) || (!negate && doesInputMatchRegex)) {
+        input.setCustomValidity(msg);
+    } else {
+        input.setCustomValidity('');
+    }
+    
+}
 
 paymentSelector.addEventListener('change', () => {
     displayPaymentMethod(paymentSelector.value);
@@ -374,17 +384,6 @@ submitOrderBtn.addEventListener("click", () => {
     validateOrderForm();
 }); 
 
-
-function validateInputField(negate, regex, input, msg ) {
-    const doesInputMatchRegex = regex.test(input.value);
-
-    if ((negate && !doesInputMatchRegex) || (!negate && doesInputMatchRegex)) {
-        input.setCustomValidity(msg);
-    } else {
-        input.setCustomValidity('');
-    }
-    
-}
 
 function validateOrderForm() {
     /*
