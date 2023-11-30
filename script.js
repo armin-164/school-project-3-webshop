@@ -351,6 +351,25 @@ const submitOrderBtn = document.querySelector('.submit-btn');
 const resetOrderBtn = document.querySelector('.reset-btn');
 const paymentSelector = document.querySelector(".payment-method");
 
+
+paymentSelector.addEventListener('change', () => {
+    displayPaymentMethod(paymentSelector.value);
+});
+
+function displayPaymentMethod(method) {
+    const invoicePaymentDiv = document.querySelector('#payment-invoice');
+    const cardPaymentDiv = document.querySelector('#payment-card');
+
+    if (method === 'invoice') {
+        cardPaymentDiv.style.display = "none";
+        invoicePaymentDiv.style.display = "flex";
+    }
+    else if (method === 'card') {
+        invoicePaymentDiv.style.display = "none";
+        cardPaymentDiv.style.display = "flex";
+    }
+}
+
 submitOrderBtn.addEventListener("click", () => {
     validateOrderForm();
 }); 
@@ -358,7 +377,7 @@ submitOrderBtn.addEventListener("click", () => {
 
 function validateInputField(negate, regex, input, msg ) {
     const doesInputMatchRegex = regex.test(input.value);
-    
+
     if ((negate && !doesInputMatchRegex) || (!negate && doesInputMatchRegex)) {
         input.setCustomValidity(msg);
     } else {
