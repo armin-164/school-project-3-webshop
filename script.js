@@ -357,10 +357,10 @@ submitOrderBtn.addEventListener("click", () => {
 
 
 function validateInputField(negate, regex, input, msg ) {
-    const inputIsValid = regex.test(input.value);
+    const doesInputMatchRegex = regex.test(input.value);
     if (negate === false) {
 
-        if (inputIsValid) {
+        if (doesInputMatchRegex) {
             input.setCustomValidity(msg);
         }
     
@@ -371,13 +371,11 @@ function validateInputField(negate, regex, input, msg ) {
 
     else {
 
-        if (!inputIsValid) {
+        if (!doesInputMatchRegex) {
             input.setCustomValidity(msg);
         }
     
-        else {
-            input.setCustomValidity('');
-        }
+        input.setCustomValidity('');
     }
     
 }
@@ -394,7 +392,7 @@ function validateOrderForm() {
 
 
     const userFirstAndLastName = document.querySelectorAll('.user-name');
-    userFirstAndLastName.forEach(name => validateInputField(false, hasNumbersOrSymbols, name, "Hey"));
+    userFirstAndLastName.forEach(name => validateInputField(false, hasNumbersOrSymbols, name, "Please exclude any numbers or symbols"));
 
     const userPostalCode = document.querySelector('.user-postalcode');
     validateInputField(true, containsFiveNumbers, userPostalCode, "Invalid Postal Code");
@@ -404,6 +402,6 @@ function validateOrderForm() {
     validateInputField(false, hasNumbersOrSymbols, userCity, 'Please exclude any numbers/symbols');
     
     const userPhone = document.querySelector('.user-phone');
-    validateInputField(true, validPhoneNumber, userCity, 'Invalid Phone Number');
+    validateInputField(true, validPhoneNumber, userPhone, 'Invalid Phone Number');
 
 }
