@@ -386,5 +386,16 @@ function submitOrder() {
     }
 
     const userCity = document.querySelector('.user-city');
-    validateStringForNumbersOrSymbols(userCity);  
+    validateStringForNumbersOrSymbols(userCity); 
+    
+    const userPhone = document.querySelector('.user-phone');
+    const phoneNumberIsValid = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im.test(userPhone.value);
+
+    if (!phoneNumberIsValid) {
+        userPhone.setCustomValidity('Please write a valid phone number');
+    }
+
+    else {
+        userPhone.setCustomValidity('');
+    }
 }
