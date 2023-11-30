@@ -351,7 +351,9 @@ const submitOrderBtn = document.querySelector('.submit-btn');
 const resetOrderBtn = document.querySelector('.reset-btn');
 const paymentSelector = document.querySelector(".payment-method");
 
-submitOrderBtn.addEventListener("click", submitOrder); 
+submitOrderBtn.addEventListener("click", () => {
+    validateOrderForm();
+}); 
 
 function validateStringForNumbersOrSymbols(str) {
     const hasNumbersOrSymbols = /[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/.test(str.value);
@@ -365,7 +367,7 @@ function validateStringForNumbersOrSymbols(str) {
     }
 }
 
-function submitOrder() {
+function validateOrderForm() {
     /*
     if (cartArray.length < 1) {
         alert("Your cart is empty");
