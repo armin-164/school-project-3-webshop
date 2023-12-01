@@ -424,15 +424,19 @@ function validateOrderForm() {
     validateInputField(true, validPhoneNumber, userPhone, 'Invalid Phone Number');
 
     const userCardNumber = document.querySelector('.user-card-number');
-    validateInputField(true, containsSixteenNumbers, userCardNumber, 'Invalid Card Number')
-
     const userCardExpiryDate = document.querySelector('.user-card-expiry-date');
-    validateInputField(true, isYearAndMonth, userCardExpiryDate, 'Please write in this format: YYYY/MM');
-
     const userCardCvc = document.querySelector('.user-card-cvc');
-    validateInputField(true, containsThreeNumbers, userCardCvc, 'Please write a three-digit CVC');
 
     const userSSN = document.querySelector('.user-ssn');
-    validateInputField(true, isAnSSN, userSSN, 'Please write your SSN with 10 or 12 digits');
+
+    if (userCardNumber.value === "" && userCardExpiryDate.value === "" && userCardCvc.value === "") {
+        validateInputField(true, isAnSSN, userSSN, 'Please write your SSN with 10 or 12 digits');
+    }
+
+    else if (userSSN.value == "") {
+        validateInputField(true, containsSixteenNumbers, userCardNumber, 'Invalid Card Number')
+        validateInputField(true, isYearAndMonth, userCardExpiryDate, 'Please write in this format: YYYY/MM');
+        validateInputField(true, containsThreeNumbers, userCardCvc, 'Please write a three-digit CVC');
+    }
 
 }
