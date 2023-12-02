@@ -355,7 +355,7 @@ main {
                     }
                 }
 
-                button {
+                .submit-btn, .reset-btn {
                     font-size: clamp(1em, 3vw, 1.5em);
                     padding: 0.5em 1em;
                     background-color: green;
@@ -365,7 +365,6 @@ main {
                     width: 100%;
                     margin: 0.25em 0;
                 }
-
                 
             }
             
