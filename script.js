@@ -433,7 +433,7 @@ function validateOrderForm() {
         validateInputField(true, isAnSSN, userSSN, 'Please write your SSN with 10 or 12 digits');
     }
 
-    else if (userSSN.value == "") {
+    else if (userSSN.value === "") {
         validateInputField(true, containsSixteenNumbers, userCardNumber, 'Invalid Card Number')
         validateInputField(true, isYearAndMonth, userCardExpiryDate, 'Please write in this format: YYYY/MM');
         validateInputField(true, containsThreeNumbers, userCardCvc, 'Please write a three-digit CVC');
