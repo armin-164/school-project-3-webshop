@@ -471,6 +471,32 @@ function formIsValid() {
   
 }
 
+function calculateDeliveryTime() {
+  const currentDate = new Date();
+  const weekDay = currentDate.getDay();
+  let hours = currentDate.getHours();
+  let minutes = currentDate.getMinutes();
+
+  if (weekDay === 0 || weekDay === 6) {
+    currentDate.setHours(currentDate.getHours() + 1);
+    currentDate.setMinutes(currentDate.getMinutes() + 30);  
+    return `Your order will be delivered at ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+  }
+
+  else if (hours < 8 || hours > 23) {
+    currentDate.setMinutes(currentDate.getMinutes() + 45);  
+    return `Your order will be delivered at ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+  }
+
+  else if ((hours >= 12 && minutes >= 1) || (hours <= 13 && minutes >= 1)) {
+    return `Your order will be delivered at 15:00`;
+  }
+
+  else {
+    currentDate.setMinutes(currentDate.getMinutes() + 30);  
+    return `Your order will be delivered at ${currentDate.getHours()}:${currentDate.getMinutes()}`;
+  }
+} 
 
 
 
@@ -534,14 +560,22 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
     deliveryContactInfo.innerText = `${email.value}, ${phone.value}`;
     infoContainer.appendChild(deliveryContactInfo);
 
+    const deliveryTimeContainer = document.createElement("div");
+    deliveryTimeContainer.classList.add("order-delivery-time");
+
+    const deliveryTime = document.createElement("span");
+    deliveryTime.innerText = calculateDeliveryTime();
+    deliveryTimeContainer.appendChild(deliveryTime);
+
+
 
     orderConfirmationBox.appendChild(confirmationHeader);
     orderConfirmationBox.appendChild(orderedItemsContainer);
     orderConfirmationBox.appendChild(infoContainer);
+    orderConfirmationBox.appendChild(deliveryTimeContainer);
     sectionCheckout.appendChild(orderConfirmationBox);
     
   }
-
   else if (cartArray.length < 1) {
     alert("Please add the desired items to your cart")
   }
