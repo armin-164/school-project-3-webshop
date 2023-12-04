@@ -413,6 +413,8 @@ function validateOrderForm() {
     const userFirstAndLastName = document.querySelectorAll('.user-name');
     userFirstAndLastName.forEach(name => validateInputField(false, hasNumbersOrSymbols, name, "Please exclude any numbers or symbols"));
 
+    const userAdress = document.querySelector('.user-adress');
+
     const userPostalCode = document.querySelector('.user-postalcode');
     validateInputField(true, containsFiveNumbers, userPostalCode, "Invalid Postal Code");
 
@@ -422,6 +424,8 @@ function validateOrderForm() {
     
     const userPhone = document.querySelector('.user-phone');
     validateInputField(true, validPhoneNumber, userPhone, 'Invalid Phone Number');
+
+    const userEmail = document.querySelector('.user-email');
 
     const userCardNumber = document.querySelector('.user-card-number');
     const userCardExpiryDate = document.querySelector('.user-card-expiry-date');
@@ -439,7 +443,7 @@ function validateOrderForm() {
         validateInputField(true, containsThreeNumbers, userCardCvc, 'Please write a three-digit CVC');
     }
 
-    displayOrderConfirmation();
+    displayOrderConfirmation(userFirstAndLastName, userAdress, userPostalCode, userCity, userEmail, userPhone);
 }
 
 function formIsValid() {
@@ -470,7 +474,7 @@ function formIsValid() {
 
 
 
-function displayOrderConfirmation () {
+function displayOrderConfirmation (names, adress, postalCode, city, email, phone) {
   const sectionCheckout = document.querySelector('.section-checkout');
 
 
@@ -484,6 +488,7 @@ function displayOrderConfirmation () {
     const orderedItemsContainer = document.createElement("div");
     cartArray.forEach((item) => {
       const itemRow = document.createElement("div");
+      itemRow.classList.add("confirmation-row");
 
       const itemName = document.createElement("span");
       itemName.innerText = item.name;
@@ -500,7 +505,29 @@ function displayOrderConfirmation () {
       orderedItemsContainer.appendChild(itemRow);
     })
 
+    
+    const infoContainer = document.createElement("div");
+
+    const deliveryMessageParagraph = document.createElement("p");
+    deliveryMessageParagraph.innerText = 'Delivery Information:'
+    infoContainer.appendChild(deliveryMessageParagraph);
+
+    const deliveryName = document.createElement("span");
+    deliveryName.innerText = `${names[0].value} ${names[1].value}`;
+    infoContainer.appendChild(deliveryName);
+
+    const deliveryAdress = document.createElement("span");
+    deliveryAdress.innerText = `${adress.value}, ${postalCode.value}, ${city.value}`;
+    infoContainer.appendChild(deliveryAdress);
+
+    const deliveryContactInfo = document.createElement("span");
+    deliveryContactInfo.innerText = `${email.value}, ${phone.value}`;
+    infoContainer.appendChild(deliveryContactInfo);
+
+
+    orderConfirmationBox.appendChild(confirmationHeader);
     orderConfirmationBox.appendChild(orderedItemsContainer);
+    orderConfirmationBox.appendChild(infoContainer);
     sectionCheckout.appendChild(orderConfirmationBox);
     
   }
