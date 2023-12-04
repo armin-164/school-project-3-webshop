@@ -267,59 +267,59 @@
             <span class="cart-total-sum">Your Total is: </span>
             <div class="form-checkout">
                 <div class="form-row">
-                    <label for="firstName">First Name</label>
+                    <label>First Name</label>
                     <input type="text" class="user-name" maxlength="50" minlength="1" required>
                 </div>
             
                 <div class="form-row">
-                    <label for="lastName">Last Name</label>
+                    <label>Last Name</label>
                     <input type="text" class="user-name" maxlength="50" minlength="1" required>
                 </div>
             
                 <div class="form-row">
-                    <label for="address">Street Adress</label>
-                    <input type="text" id="address" name="address" minlength="1" maxlength="50" required>
+                    <label>Street Adress</label>
+                    <input type="text" minlength="1" maxlength="50" required>
                 </div>
             
                 <div class="form-row">
-                    <label for="postalCode">Postal Code</label>
-                    <input type="text" class="user-postalcode" name="postalCode" minlength="5" maxlength="5" required>
+                    <label>Postal Code</label>
+                    <input type="text" class="user-postalcode" minlength="5" maxlength="5" required>
                 </div>
             
                 <div class="form-row">
-                    <label for="city">City</label>
-                    <input type="text" class="user-city" name="city" minlength="1" maxlength="30" required>
+                    <label>City</label>
+                    <input type="text" class="user-city" minlength="1" maxlength="30" required>
                 </div>
             
                 <div class="form-row">
-                    <label for="portCode">Optional Port Code</label>
-                    <input type="text" class="user-portcode" name="portCode" minlength="4" maxlength="4">
+                    <label>Optional Port Code</label>
+                    <input type="text" class="user-portcode" minlength="4" maxlength="4">
                 </div>
             
                 <div class="form-row">
                     <label for="phone">Phone number</label>
-                    <input type="tel" class="user-phone" name="phone" required>
+                    <input type="tel" class="user-phone" required>
                 </div>
             
                 <div class="form-row">
                     <label for="email">Email Address</label>
-                    <input type="email" class="user-email" name="email" minlength="4" maxlength="40" required>
+                    <input type="email" class="user-email" minlength="4" maxlength="40" required>
                 </div>
             
                 <div class="pay-method-and-consent">
                     <label>Payment Method</label>
-                    <select class="payment-method" name="paymentMethod" required>
+                    <select class="payment-method" required>
                         <option selected value>Select your payment method</option>
                         <option value="card">Card</option>
                         <option value="invoice">Invoice</option>
                     </select>
                     <div class="accept-terms">
                         <label>
-                            <input type="checkbox" name="acceptTerms" required>
+                            <input type="checkbox" required>
                             I consent to the processing of my personal data
                         </label>
                         <label>
-                            <input type="checkbox" name="subscribeNewsletter" checked>
+                            <input type="checkbox" checked>
                             Subscription to Newsletter
                         </label>
                     </div>
@@ -327,24 +327,24 @@
             
                 <div class="form-row" id="payment-invoice">
                     <label>Social Security Number</label>
-                    <input type="text" class="user-ssn" name="ssn" required>
+                    <input type="text" class="user-ssn" required>
                 </div>
             
                 <div class="form-row" id="payment-card">
-                    <label for="cardNumber">Card Number</label>
-                    <input type="text" class="user-card-number" name="cardNumber" required>
+                    <label >Card Number</label>
+                    <input type="text" class="user-card-number" required>
             
-                    <label for="expiryDate">Expiry Date</label>
-                    <input type="text" class="user-card-expiry-date" name="expiryDate" required>
+                    <label>Expiry Date</label>
+                    <input type="text" class="user-card-expiry-date" required>
             
-                    <label for="cvc">CVC</label>
-                    <input type="text" class="user-card-cvc" name="cvc" required>
+                    <label>CVC</label>
+                    <input type="text" class="user-card-cvc" required>
                 </div>
             
                 <div class="form-row">
-                    <label for="discountCode">Discount Code</label>
+                    <label>Discount Code</label>
                     <div>
-                        <input type="text" id="discountCode" name="discountCode">
+                        <input type="text" class="discount-code">
                         <button class="apply-btn">Apply</button>
                     </div>
                 </div>
