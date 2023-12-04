@@ -486,6 +486,10 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
     confirmationHeader.innerText = 'Thank you for the order!'
 
     const orderedItemsContainer = document.createElement("div");
+    orderedItemsContainer.classList.add("ordered-items");
+
+    let priceTotal = 0;
+
     cartArray.forEach((item) => {
       const itemRow = document.createElement("div");
       itemRow.classList.add("confirmation-row");
@@ -499,12 +503,17 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
       const itemPrice = document.createElement("span");
       itemPrice.innerText = `${item.price}kr`
 
+      priceTotal += item.price;
+
       itemRow.appendChild(itemName);
       itemRow.appendChild(itemAmount);
       itemRow.appendChild(itemPrice);
       orderedItemsContainer.appendChild(itemRow);
     })
 
+    const itemsPriceTotal = document.createElement("span");
+    itemsPriceTotal.innerText = `Your total is ${priceTotal}kr`;
+    orderedItemsContainer.appendChild(itemsPriceTotal);
     
     const infoContainer = document.createElement("div");
     infoContainer.classList.add("user-delivery-info");
