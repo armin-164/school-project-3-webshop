@@ -112,9 +112,9 @@ addToCartButtons.forEach((btn) => {
     const isItemInCartArray = isItemInArray(btn);
 
     if (!isItemInCartArray) {
-    resetCart();
-    fetchItemInfo(btn);
-    updateCartDOM();
+      resetCart();
+      fetchItemInfo(btn);
+      updateCartDOM();
     }
     
   });
