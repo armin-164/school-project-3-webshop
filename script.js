@@ -10,7 +10,7 @@ filterList.addEventListener('change', () => {
 });
 
 
-function filterProducts (filter_value) {
+function filterProducts (filterValue) {
     const allProductsDOM = document.querySelectorAll('.product');
     const productList = document.querySelector('.product-list');
     let productsArray = [];
@@ -29,7 +29,7 @@ function filterProducts (filter_value) {
 
     })
 
-    if (filter_value === "filter-name") {
+    if (filterValue === "filter-name") {
         productList.innerHTML = "";
         sortPropertyAlphabetically(productsArray);
         productsArray.forEach((obj) => {
@@ -37,7 +37,7 @@ function filterProducts (filter_value) {
         })
     }
 
-    else if (filter_value === "filter-price-down") {
+    else if (filterValue === "filter-price-down") {
         productList.innerHTML = "";
         productsArray.sort((a, b) => b.price - a.price);
         
@@ -46,7 +46,7 @@ function filterProducts (filter_value) {
         })
     }
 
-    else if (filter_value === "filter-price-up") {
+    else if (filterValue === "filter-price-up") {
         productList.innerHTML = "";
         productsArray.sort((a, b) => a.price - b.price);
         
@@ -55,7 +55,7 @@ function filterProducts (filter_value) {
         })
     }
 
-    else if (filter_value === "filter-rating") {
+    else if (filterValue === "filter-rating") {
         productList.innerHTML = "";
         productsArray.sort((a, b) => b.rating - a.rating);
         
@@ -88,13 +88,13 @@ filterListCategories.addEventListener('change', () => {
     hideProducts(filterListCategories.value);
 });
 
-function hideProducts(filter_value) {
+function hideProducts(filterValue) {
     const allProductsDOM = document.querySelectorAll('.product');
 
     allProductsDOM.forEach((product) => {
         const category = product.querySelector('.product-category');
 
-        if (filter_value !== category.dataset.value) {
+        if (filterValue !== category.dataset.value) {
             product.style.display = "none";
         }
 
