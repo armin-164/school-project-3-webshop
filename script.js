@@ -507,6 +507,7 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
 
     
     const infoContainer = document.createElement("div");
+    infoContainer.classList.add("user-delivery-info");
 
     const deliveryMessageParagraph = document.createElement("p");
     deliveryMessageParagraph.innerText = 'Delivery Information:'
