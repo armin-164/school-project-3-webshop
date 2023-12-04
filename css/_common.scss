@@ -372,4 +372,29 @@ main {
 
     }
 
+    .order-confirmation {
+        width: 50%;
+        height: 50%;
+        transform: translate(-50%, -50%);
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        background-color: white;
+        border: 0.2rem solid black;
+        text-align: center;
+
+        .confirmation-row {
+            display: flex;
+            gap: 1em;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+        }
+
+        > .user-delivery-info {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+
 }
