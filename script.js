@@ -439,4 +439,78 @@ function validateOrderForm() {
         validateInputField(true, containsThreeNumbers, userCardCvc, 'Please write a three-digit CVC');
     }
 
+    displayOrderConfirmation();
 }
+
+function formIsValid() {
+  const formRows = document.querySelectorAll('.form-row[style*="display: flex"]');
+  const checkbox = document.querySelector('input[type="checkbox"][required]');
+  const selectPayment = document.querySelector('.payment-method');
+  let empty = 0;
+
+
+  formRows.forEach((row) => {
+    const requiredInputs = row.querySelectorAll('input[type="text"][required]');
+
+    requiredInputs.forEach((input) => {
+      if (input.value === "") {
+        empty += 1;
+      }
+    })
+
+ 
+  })
+
+  if (empty === 0 && checkbox.checked && selectPayment.selectedIndex !== 0 && cartArray.length >= 1) {
+    return true;
+  }
+  
+}
+
+
+
+
+function displayOrderConfirmation () {
+  const sectionCheckout = document.querySelector('.section-checkout');
+
+
+  if (!sectionCheckout.querySelector('.order-confirmation') && formIsValid()) {
+    const orderConfirmationBox = document.createElement("div");
+    orderConfirmationBox.classList.add('order-confirmation');
+
+    const confirmationHeader = document.createElement("h5");
+    confirmationHeader.innerText = 'Thank you for the order!'
+
+    const orderedItemsContainer = document.createElement("div");
+    cartArray.forEach((item) => {
+      const itemRow = document.createElement("div");
+
+      const itemName = document.createElement("span");
+      itemName.innerText = item.name;
+
+      const itemAmount = document.createElement("span");
+      itemAmount.innerText = `x ${item.amount}`;
+
+      const itemPrice = document.createElement("span");
+      itemPrice.innerText = `${item.price}kr`
+
+      itemRow.appendChild(itemName);
+      itemRow.appendChild(itemAmount);
+      itemRow.appendChild(itemPrice);
+      orderedItemsContainer.appendChild(itemRow);
+    })
+
+    orderConfirmationBox.appendChild(orderedItemsContainer);
+    sectionCheckout.appendChild(orderConfirmationBox);
+    
+  }
+
+  else if (cartArray.length < 1) {
+    alert("Please add the desired items to your cart")
+  }
+
+  else if (sectionCheckout.querySelector('.order-confirmation')) {
+    alert("Please update your page!");
+   }
+}
+
