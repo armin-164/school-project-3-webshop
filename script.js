@@ -196,9 +196,22 @@ function updateCartDOM() {
 function updateTotalPrice() {
     let cartSumDOM = document.querySelector('.cart-total-sum');
     let cartSum = 0;
+
+    let currentDate = new Date();
+    let weekDay = currentDate.getDay();
+    let hours = currentDate.getHours();
+
     cartArray.forEach((item) => cartSum += item.price);
 
-    cartSumDOM.innerText = `Your Total is: ${cartSum}kr`;
+    if (weekDay === 1 && hours < 10) {
+      cartSumDOM.innerText = `Monday special 10%: Your total is ${cartSum * 0.9}kr`;
+    }
+
+    if (cartSum > 800) {
+      const paymentSelector = document.querySelector(".payment-method");
+      paymentSelector.removeChild(paymentSelector.options[2]);
+    }
+    cartSumDOM.innerText = `Your total is: ${cartSum}kr`;
 }
 
 function createItemLeftSection(img, name, category) {
