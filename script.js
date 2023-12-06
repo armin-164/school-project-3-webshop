@@ -213,39 +213,39 @@ function updateTotalPrice() {
     const cartSumDOM = document.querySelector('.cart-total-sum');
     let cartSum = 0;
     let totalDonuts = 0;
+    let deliveryFee = 25;
 
     const currentDate = new Date();
     const weekDay = currentDate.getDay();
     const hours = currentDate.getHours();
 
-    cartArray.forEach((item) => {
-      cartSum += item.price;
-      totalDonuts += item.amount;
-    });
-
-    let deliveryFee = 25;
-
-    if (totalDonuts > 15) {
-      deliveryFee = 0;
+    if (cartArray.length < 1) {
+      cartSumDOM.innerText = 'Your Total is:';
     }
 
-    else {
-      deliveryFee += cartSum * 0.1;
-    }
+      else {
+        cartArray.forEach((item) => {
+          cartSum += item.price;
+          totalDonuts += item.amount;
+        });
 
-    if (weekDay === 1 && hours < 10) {
-      cartSumDOM.innerText = `Monday special 10%: The prices are ${cartSum * 0.9}kr + ${deliveryFee}kr in delivery fee. Total: ${(cartSum * 0.9) + deliveryFee}`;
-    }
-
-    else {
-      cartSumDOM.innerText = `The prices are ${cartSum}kr + ${deliveryFee}kr in delivery fee. Total: ${cartSum + deliveryFee}`;
-
-    }
-
-    if (cartSum + deliveryFee > 800) {
-      const paymentSelector = document.querySelector(".payment-method");
-      paymentSelector.removeChild(paymentSelector.options[2]);
-    }
+        if (totalDonuts > 15) {
+          deliveryFee = 0;
+        }
+        else {
+          deliveryFee += cartSum * 0.1;
+        }
+        if (weekDay === 1 && hours < 10) {
+          cartSumDOM.innerText = `Monday special 10%: The prices are ${cartSum * 0.9}kr + ${deliveryFee}kr in delivery fee. Total: ${(cartSum * 0.9) + deliveryFee}`;
+        }
+        else {
+          cartSumDOM.innerText = `The prices are ${cartSum}kr + ${deliveryFee}kr in delivery fee. Total: ${cartSum + deliveryFee}`;
+        }
+        if (cartSum + deliveryFee > 800) {
+          const paymentSelector = document.querySelector(".payment-method");
+          paymentSelector.removeChild(paymentSelector.options[2]);
+        }
+      }
 
 }
 
@@ -458,6 +458,12 @@ function displayPaymentMethod(method) {
 submitOrderBtn.addEventListener("click", () => {
     validateOrderForm();
 }); 
+
+resetOrderBtn.addEventListener("click", () => {
+  resetCart();
+  cartArray.splice(0, cartArray.length);  
+  updateTotalPrice();
+})
 
 
 function validateOrderForm() {
