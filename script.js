@@ -303,12 +303,12 @@ function createItemRightSection(price, rating, amount) {
   itemPrice.innerText = `${price}kr`;
 
   reduceBtn.addEventListener("click", (e) => {
-    increaseOrDecrease(e, "-", price, itemAmountInput);
+    increaseOrDecrease(e, "-", itemAmountInput);
     updateTotalPrice();
   })
 
   increaseBtn.addEventListener("click", (e) => {
-    increaseOrDecrease(e, "+", price, itemAmountInput);
+    increaseOrDecrease(e, "+", itemAmountInput);
     updateTotalPrice();
   })
 
@@ -332,7 +332,7 @@ function createItemRightSection(price, rating, amount) {
   return itemRightSection;
 }
 
-function increaseOrDecrease(e, symbol, price, element) {
+function increaseOrDecrease(e, symbol, element) {
     const cartItem = e.target.closest('.cart-item');
     const cartItemName = cartItem.querySelector('h4').innerText;
     let itemPriceDOM = e.target.closest('.item-right-section').querySelector('.item-total-price');
