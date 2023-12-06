@@ -203,7 +203,7 @@ function updateTotalPrice() {
 
     cartArray.forEach((item) => cartSum += item.price);
 
-    if (weekDay === 3 && hours < 20) {
+    if (weekDay === 1 && hours < 10) {
       cartSumDOM.innerText = `Monday special 10%: Your total is ${cartSum * 0.9}kr`;
     }
 
