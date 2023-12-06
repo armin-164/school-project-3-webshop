@@ -203,15 +203,19 @@ function updateTotalPrice() {
 
     cartArray.forEach((item) => cartSum += item.price);
 
-    if (weekDay === 1 && hours < 10) {
+    if (weekDay === 3 && hours < 20) {
       cartSumDOM.innerText = `Monday special 10%: Your total is ${cartSum * 0.9}kr`;
+    }
+
+    else {
+      cartSumDOM.innerText = `Your total is: ${cartSum}kr`;
     }
 
     if (cartSum > 800) {
       const paymentSelector = document.querySelector(".payment-method");
       paymentSelector.removeChild(paymentSelector.options[2]);
     }
-    cartSumDOM.innerText = `Your total is: ${cartSum}kr`;
+
 }
 
 function createItemLeftSection(img, name, category) {
