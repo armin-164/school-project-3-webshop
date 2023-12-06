@@ -212,22 +212,37 @@ function updateCartDOM() {
 function updateTotalPrice() {
     let cartSumDOM = document.querySelector('.cart-total-sum');
     let cartSum = 0;
+    let totalDonuts = 0;
 
     let currentDate = new Date();
     let weekDay = currentDate.getDay();
     let hours = currentDate.getHours();
 
-    cartArray.forEach((item) => cartSum += item.price);
+    cartArray.forEach((item) => {
+      cartSum += item.price;
+      totalDonuts += item.amount;
+    });
 
-    if (weekDay === 1 && hours < 10) {
-      cartSumDOM.innerText = `Monday special 10%: Your total is ${cartSum * 0.9}kr`;
+    let deliveryFee = 25;
+
+    if (totalDonuts > 15) {
+      deliveryFee = 0;
     }
 
     else {
-      cartSumDOM.innerText = `Your total is: ${cartSum}kr`;
+      deliveryFee += cartSum * 0.1;
     }
 
-    if (cartSum > 800) {
+    if (weekDay === 1 && hours < 10) {
+      cartSumDOM.innerText = `Monday special 10%: The prices are ${cartSum * 0.9}kr + ${deliveryFee}kr in delivery fee. Total: ${(cartSum * 0.9) + deliveryFee}`;
+    }
+
+    else {
+      cartSumDOM.innerText = `The prices are ${cartSum}kr + ${deliveryFee}kr in delivery fee. Total: ${cartSum + deliveryFee}`;
+
+    }
+
+    if (cartSum + deliveryFee > 800) {
       const paymentSelector = document.querySelector(".payment-method");
       paymentSelector.removeChild(paymentSelector.options[2]);
     }
