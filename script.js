@@ -15,7 +15,7 @@ function priceIncreaseRule() {
 
   if ( (weekDay === 5 && hours >= 15) || (weekDay === 6) || (weekDay === 0) || (weekDay === 0 && hours < 3) ) {
     allProductPrices.forEach((price) => {
-      const currentPrice = parseInt(price.innerText);
+      const currentPrice = parseInt(price.innerText, 10);
       price.innerText = currentPrice * 1.15;
     });
   }
@@ -29,7 +29,7 @@ filterList.addEventListener('change', () => {
 function filterProducts (filterValue) {
     const allProductsDOM = document.querySelectorAll('.product');
     const productList = document.querySelector('.product-list');
-    let productsArray = [];
+    const productsArray = [];
 
     allProductsDOM.forEach((product) => {
         const ratings = product.querySelectorAll('.fa');
@@ -210,13 +210,13 @@ function updateCartDOM() {
 }
 
 function updateTotalPrice() {
-    let cartSumDOM = document.querySelector('.cart-total-sum');
+    const cartSumDOM = document.querySelector('.cart-total-sum');
     let cartSum = 0;
     let totalDonuts = 0;
 
-    let currentDate = new Date();
-    let weekDay = currentDate.getDay();
-    let hours = currentDate.getHours();
+    const currentDate = new Date();
+    const weekDay = currentDate.getDay();
+    const hours = currentDate.getHours();
 
     cartArray.forEach((item) => {
       cartSum += item.price;
@@ -298,7 +298,7 @@ function createItemRightSection(price, rating, amount) {
   const itemPriceContainer = document.createElement('div');
   itemPriceContainer.classList.add('item-price');
 
-  let itemPrice = document.createElement('span');
+  const itemPrice = document.createElement('span');
   itemPrice.classList.add('item-total-price');
   itemPrice.innerText = `${price}kr`;
 
@@ -335,10 +335,10 @@ function createItemRightSection(price, rating, amount) {
 function increaseOrDecrease(e, symbol, element) {
     const cartItem = e.target.closest('.cart-item');
     const cartItemName = cartItem.querySelector('h4').innerText;
-    let itemPriceDOM = e.target.closest('.item-right-section').querySelector('.item-total-price');
+    const itemPriceDOM = e.target.closest('.item-right-section').querySelector('.item-total-price');
     let defaultProductPrice;
 
-    let productsDOM = document.querySelectorAll('.product');
+    const productsDOM = document.querySelectorAll('.product');
     productsDOM.forEach((product) => {
       const productName = product.querySelector("h3").innerText;
       if (productName === cartItemName) {
@@ -540,8 +540,8 @@ function formIsValid() {
 function calculateDeliveryTime() {
   const currentDate = new Date();
   const weekDay = currentDate.getDay();
-  let hours = currentDate.getHours();
-  let minutes = currentDate.getMinutes();
+  const hours = currentDate.getHours();
+  const minutes = currentDate.getMinutes();
 
   if (weekDay === 0 || weekDay === 6) {
     currentDate.setHours(currentDate.getHours() + 1);
