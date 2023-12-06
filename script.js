@@ -4,6 +4,22 @@ const cartArray = [];
 const filterList = document.querySelector('select[name="filter-list"]');
 const filterListCategories = document.querySelector('select[name="filter-category"]');
 
+document.addEventListener("DOMContentLoaded", priceIncreaseRule());
+
+function priceIncreaseRule() {
+  const allProductPrices = document.querySelectorAll('.product-price');
+
+  const currentDate = new Date();
+  const weekDay = currentDate.getDay();
+  const hours = currentDate.getHours();
+
+  if ( (weekDay === 5 && hours >= 15) || (weekDay === 6) || (weekDay === 0) || (weekDay === 0 && hours < 3) ) {
+    allProductPrices.forEach((price) => {
+      const currentPrice = parseInt(price.innerText);
+      price.innerText = currentPrice * 1.15;
+    });
+  }
+}
 
 filterList.addEventListener('change', () => {
     filterProducts(filterList.value)
