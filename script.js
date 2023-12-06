@@ -336,38 +336,42 @@ function increaseOrDecrease(e, symbol, price, element) {
     const cartItem = e.target.closest('.cart-item');
     const cartItemName = cartItem.querySelector('h4').innerText;
     let itemPriceDOM = e.target.closest('.item-right-section').querySelector('.item-total-price');
+    let defaultProductPrice;
+
+    let productsDOM = document.querySelectorAll('.product');
+    productsDOM.forEach((product) => {
+      const productName = product.querySelector("h3").innerText;
+      if (productName === cartItemName) {
+         defaultProductPrice = parseInt(product.querySelector('.product-price').innerText, 10);
+      }
+    });
 
     cartArray.forEach((obj) => {
 
         if (cartItemName === obj.name && obj.amount >= 1 && symbol === "+") {
             obj.amount += 1;
             element.value = obj.amount;
-            obj.price = price * element.value;
+            obj.price = defaultProductPrice * obj.amount;
+        
 
             if (obj.amount >= 10) {
               obj.price *= 0.9;
-              itemPriceDOM.innerText = `${obj.price}kr`;
             }
 
-            else {
-              itemPriceDOM.innerText = `${obj.price}kr`;
-            }
+            itemPriceDOM.innerText = `${obj.price}kr`;
 
         }
 
         else if (cartItemName === obj.name && obj.amount >=2  && symbol === "-") {
             obj.amount -= 1;
             element.value = obj.amount;
-            obj.price = price * element.value;
+            obj.price = defaultProductPrice * obj.amount;
 
             if (obj.amount >= 10) {
               obj.price *= 0.9;
-              itemPriceDOM.innerText = `${obj.price}kr`;
             }
-
-            else {
-              itemPriceDOM.innerText = `${obj.price}kr`;
-            }
+            
+            itemPriceDOM.innerText = `${obj.price}kr`;
         }    
     })
 
