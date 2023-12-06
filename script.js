@@ -329,16 +329,28 @@ function increaseOrDecrease(e, symbol, price, element) {
             element.value = obj.amount;
             obj.price = price * element.value;
 
-            itemPriceDOM.innerText = `${obj.price}kr`;
+            if (obj.amount >= 10) {
+              itemPriceDOM.innerText = `${obj.price * 0.9}kr`;
+            }
+
+            else {
+              itemPriceDOM.innerText = `${obj.price}kr`;
+            }
 
         }
 
         else if (name === obj.name && obj.amount >=2  && symbol === "-") {
             obj.amount -= 1;
-            obj.price -= price;
-
             element.value = obj.amount;
-            itemPriceDOM.innerText = `${obj.price}kr`;
+            obj.price = price * element.value;
+
+            if (obj.amount >= 10) {
+              itemPriceDOM.innerText = `${obj.price * 0.9}kr`;
+            }
+
+            else {
+              itemPriceDOM.innerText = `${obj.price}kr`;
+            }
         }    
     })
 
