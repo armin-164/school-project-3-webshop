@@ -334,12 +334,12 @@ function createItemRightSection(price, rating, amount) {
 
 function increaseOrDecrease(e, symbol, price, element) {
     const cartItem = e.target.closest('.cart-item');
-    const name = cartItem.querySelector('h4').innerText;
+    const cartItemName = cartItem.querySelector('h4').innerText;
     let itemPriceDOM = e.target.closest('.item-right-section').querySelector('.item-total-price');
 
     cartArray.forEach((obj) => {
 
-        if (name === obj.name && obj.amount >= 1 && symbol === "+") {
+        if (cartItemName === obj.name && obj.amount >= 1 && symbol === "+") {
             obj.amount += 1;
             element.value = obj.amount;
             obj.price = price * element.value;
@@ -355,7 +355,7 @@ function increaseOrDecrease(e, symbol, price, element) {
 
         }
 
-        else if (name === obj.name && obj.amount >=2  && symbol === "-") {
+        else if (cartItemName === obj.name && obj.amount >=2  && symbol === "-") {
             obj.amount -= 1;
             element.value = obj.amount;
             obj.price = price * element.value;
