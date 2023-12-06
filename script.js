@@ -461,11 +461,6 @@ submitOrderBtn.addEventListener("click", () => {
 
 
 function validateOrderForm() {
-    /*
-    if (cartArray.length < 1) {
-        alert("Your cart is empty");
-    }
-    */
     const hasNumbersOrSymbols = /[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
     const containsFiveNumbers = /^\d{5}$/;
     const validPhoneNumber = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/im;
