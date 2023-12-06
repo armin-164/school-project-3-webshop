@@ -330,7 +330,8 @@ function increaseOrDecrease(e, symbol, price, element) {
             obj.price = price * element.value;
 
             if (obj.amount >= 10) {
-              itemPriceDOM.innerText = `${obj.price * 0.9}kr`;
+              obj.price *= 0.9;
+              itemPriceDOM.innerText = `${obj.price}kr`;
             }
 
             else {
@@ -345,7 +346,8 @@ function increaseOrDecrease(e, symbol, price, element) {
             obj.price = price * element.value;
 
             if (obj.amount >= 10) {
-              itemPriceDOM.innerText = `${obj.price * 0.9}kr`;
+              obj.price *= 0.9;
+              itemPriceDOM.innerText = `${obj.price}kr`;
             }
 
             else {
