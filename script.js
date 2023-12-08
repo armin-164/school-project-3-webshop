@@ -16,7 +16,7 @@ function priceIncreaseRule() {
   if ( (weekDay === 5 && hours >= 15) || (weekDay === 6) || (weekDay === 0) || (weekDay === 0 && hours < 3) ) {
     allProductPrices.forEach((price) => {
       const currentPrice = parseInt(price.innerText, 10);
-      price.innerText = currentPrice * 1.15;
+      price.innerText = Math.round((currentPrice * 1.15) * 100) / 100;
     });
   }
 }
@@ -151,10 +151,10 @@ function fetchItemInfo(e) {
   const product = e.closest('.product');
   const productImg = product.querySelector('img');
   const productName = product.querySelector('h3').innerText;
-  const productPrice = parseInt(
+  const productPrice = Math.round(parseFloat(
     product.querySelector('.product-price').innerText,
     10,
-  );
+  ) * 100 ) / 100 ;
   const productRating = product.querySelectorAll('.fa');
   const productCategory = product.querySelector('.product-category').innerText;
 
@@ -233,13 +233,13 @@ function updateTotalPrice() {
           deliveryFee = 0;
         }
         else {
-          deliveryFee += cartSum * 0.1;
+          deliveryFee += Math.round(cartSum * 0.1);
         }
         if (weekDay === 1 && hours < 10) {
-          cartSumDOM.innerText = `Monday special 10%: The prices are ${cartSum * 0.9}kr + ${deliveryFee}kr in delivery fee. Total: ${(cartSum * 0.9) + deliveryFee}`;
+          cartSumDOM.innerText = `Monday special 10%: The prices are ${Math.round(cartSum * 0.9) * 100 / 100}kr + ${deliveryFee}kr in delivery fee. Total: ${Math.round((cartSum * 0.9) + deliveryFee)}`;
         }
         else {
-          cartSumDOM.innerText = `The prices are ${cartSum}kr + ${deliveryFee}kr in delivery fee. Total: ${cartSum + deliveryFee}`;
+          cartSumDOM.innerText = `The prices are ${cartSum}kr + ${deliveryFee}kr in delivery fee. Total: ${Math.round(cartSum + deliveryFee)}`;
         }
         if (cartSum + deliveryFee > 800) {
           const paymentSelector = document.querySelector(".payment-method");
@@ -581,7 +581,6 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
     const orderedItemsContainer = document.createElement("div");
     orderedItemsContainer.classList.add("ordered-items");
 
-    let priceTotal = 0;
 
     cartArray.forEach((item) => {
       const itemRow = document.createElement("div");
@@ -596,17 +595,11 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
       const itemPrice = document.createElement("span");
       itemPrice.innerText = `${item.price}kr`
 
-      priceTotal += item.price;
-
       itemRow.appendChild(itemName);
       itemRow.appendChild(itemAmount);
       itemRow.appendChild(itemPrice);
       orderedItemsContainer.appendChild(itemRow);
     })
-
-    const itemsPriceTotal = document.createElement("span");
-    itemsPriceTotal.innerText = `Your total is ${priceTotal}kr`;
-    orderedItemsContainer.appendChild(itemsPriceTotal);
     
     const infoContainer = document.createElement("div");
     infoContainer.classList.add("user-delivery-info");
