@@ -342,7 +342,7 @@ function increaseOrDecrease(e, symbol, element) {
     productsDOM.forEach((product) => {
       const productName = product.querySelector("h3").innerText;
       if (productName === cartItemName) {
-         defaultProductPrice = parseInt(product.querySelector('.product-price').innerText, 10);
+         defaultProductPrice = Math.round(parseFloat(product.querySelector('.product-price').innerText, 10) * 100) / 100;
       }
     });
 
