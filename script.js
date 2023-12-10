@@ -114,28 +114,33 @@ filterList.addEventListener('change', () => {
     filterProducts(filterList.value)
 });
 
+// This function is for the select element that has
+// the option to filter by category. It will check
+// for all products, if their dataset value is the same as
+// the category that was chosen. If condition isn't met, 
+// hide the products. And if it is met, make them visible.
+function hideProducts(filterValue) {
+  const allProductsDOM = document.querySelectorAll('.product');
 
+  allProductsDOM.forEach((product) => {
+      const category = product.querySelector('.product-category');
+
+      if (filterValue !== category.dataset.value) {
+          product.style.display = "none";
+      }
+
+      else {
+          product.style.display = "block";
+      }
+  })
+  
+};
+
+// Event listener that will listen for when select elements
+// option has changed and use hideProducts function
 filterListCategories.addEventListener('change', () => {
     hideProducts(filterListCategories.value);
 });
-
-function hideProducts(filterValue) {
-    const allProductsDOM = document.querySelectorAll('.product');
-
-    allProductsDOM.forEach((product) => {
-        const category = product.querySelector('.product-category');
-
-        if (filterValue !== category.dataset.value) {
-            product.style.display = "none";
-        }
-
-        else {
-            product.style.display = "block";
-        }
-    })
-    
-}
-
 
 
 addToCartButtons.forEach((btn) => {
