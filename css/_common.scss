@@ -22,50 +22,17 @@ header {
     background-color: rgb(134, 225, 255);
     color: #ffffff;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
     padding: 0.5% 0;
     border-bottom: 0.5em solid red;
 
-    .left-header {
-        flex: 1;
-        padding-left: 1em;
-        span {
-            font-size: clamp(2.5rem, 4vw, 5rem);
-        }
-    }
-
-    .middle-header {
-        flex: 2;
-        padding: 0;
-        h1 {
-            font-size: clamp(1.5rem, 3vw, 3vw);
-            margin: 0;
-            font-family: "Gluten", sans-serif;
-            color: #f7f2e0;
-            text-align: center;
-            text-transform: uppercase;
-            text-shadow: $headingShadow;
-        }
-    }
-
-    .right-header {
-        flex: 1;
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-        gap: clamp(0.2rem, 1vw, 3rem);
-        list-style-type: none;
-        padding: 0 1em 0 0;
-
-        li {
-            font-size: clamp(1.5rem, 2vw, 5rem);     
-        }
-        .total-amount-header {
-            font-family: $font-def;
-            font-weight: bold;
-        }
-
+    h1 {
+     font-size: clamp(1.5rem, 3vw, 3vw);
+     margin: 0;
+     font-family: "Gluten", sans-serif;
+     color: #f7f2e0;
+     text-transform: uppercase;
+     text-shadow: $headingShadow;
     }
 }
 
