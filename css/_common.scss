@@ -275,10 +275,12 @@ main {
             display: flex;
             flex-direction: column;
             align-items: center;
-            h4 {
+            legend {
                 font-size: clamp(2em, 5vw, 3em);
                 text-align: center;
                 font-family: $font-def;
+                margin: 4rem 0;
+                font-weight: bold;
             }
 
             .form-checkout {
