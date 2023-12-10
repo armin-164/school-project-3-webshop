@@ -523,8 +523,8 @@ function removePaymentInfo(element) {
 
 // This function will make the inputs related to the selected payment method, visible.
 function displayPaymentMethod(method) {
-  const invoicePaymentDiv = document.querySelector('#payment-invoice');
-  const cardPaymentDiv = document.querySelector('#payment-card');
+  const invoicePaymentDiv = document.querySelector('.payment-invoice');
+  const cardPaymentDiv = document.querySelector('.payment-card');
 
   if (method === 'invoice') {
       removePaymentInfo(cardPaymentDiv);
