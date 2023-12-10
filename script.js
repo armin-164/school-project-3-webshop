@@ -25,6 +25,8 @@ function priceIncreaseRule() {
 // Execute priceIncreaseRule when DOM content has loaded. 
 document.addEventListener("DOMContentLoaded", priceIncreaseRule());
 
+// This function will return a numerical rating depending
+// on the classes that the elements (that is used as an arg) has.
 function returnTotalRating(element) {
   let checkedStars = 0;
   let halfStars = 0;
@@ -159,7 +161,9 @@ filterListCategories.addEventListener('change', () => {
 });
 
 
-
+// This function will look for the closest header to the event object.
+// It will then loop through the cartArray to see if there is an object
+// with the same name as the header and return true if it's found.
 function isItemInArray(e) {
   const productName = e.closest('.product').querySelector('h3').innerText;
   
@@ -171,11 +175,16 @@ function isItemInArray(e) {
   return false;
 };
 
+// This function will select all cart items and remove each one of them
 function resetCart() {
   const allCartItems = document.querySelectorAll('.cart-item');
   allCartItems.forEach((item) => item.remove());
 }
 
+// This function will create a variable that will contain the closest product.
+// It will create several other variables containing product information that will
+// be used as property values for an object (cartItem). The cartItem will be pushed
+// in the cartArray
 function fetchItemInfo(e) {
   const product = e.closest('.product');
   const productImg = product.querySelector('img');
@@ -200,6 +209,7 @@ function fetchItemInfo(e) {
   cartArray.push(cartItem);
 };
 
+// This function will retrieve the DOM that represents the cart total.
 function updateTotalPrice() {
   const cartSumDOM = document.querySelector('.cart-total-sum');
   let cartSum = 0;
@@ -214,30 +224,35 @@ function updateTotalPrice() {
     cartSumDOM.innerText = 'Your Total is:';
   }
 
-    else {
-      cartArray.forEach((item) => {
-        cartSum += item.price;
-        totalDonuts += item.amount;
-      });
+  else {
 
-      if (totalDonuts > 15) {
-        deliveryFee = 0;
-      }
-      else {
-        deliveryFee += Math.round(cartSum * 0.1);
-      }
-      if (weekDay === 1 && hours < 10) {
-        cartSumDOM.innerText = `Monday special 10%: The prices are ${Math.round(cartSum * 0.9) * 100 / 100}kr + ${deliveryFee}kr in delivery fee. Total: ${Math.round((cartSum * 0.9) + deliveryFee)}`;
-      }
-      else {
-        cartSumDOM.innerText = `The prices are ${cartSum}kr + ${deliveryFee}kr in delivery fee. Total: ${Math.round(cartSum + deliveryFee)}`;
-      }
-      if (cartSum + deliveryFee > 800) {
-        const paymentSelector = document.querySelector(".payment-method");
-        paymentSelector.removeChild(paymentSelector.options[2]);
-      }
+    cartArray.forEach((item) => {
+      cartSum += item.price;
+      totalDonuts += item.amount;
+    });
+
+    if (totalDonuts > 15) {
+      deliveryFee = 0;
     }
 
+    else {
+      deliveryFee += Math.round(cartSum * 0.1);
+    }
+
+    if (weekDay === 1 && hours < 10) {
+      cartSumDOM.innerText = `Monday special 10%: The prices are ${Math.round(cartSum * 0.9) * 100 / 100}kr + ${deliveryFee}kr in delivery fee. Total: ${Math.round((cartSum * 0.9) + deliveryFee)}`;
+    }
+
+    else {
+      cartSumDOM.innerText = `The prices are ${cartSum}kr + ${deliveryFee}kr in delivery fee. Total: ${Math.round(cartSum + deliveryFee)}`;
+    }
+
+    if (cartSum + deliveryFee > 800) {
+      const paymentSelector = document.querySelector(".payment-method");
+      paymentSelector.removeChild(paymentSelector.options[2]);
+    }
+
+  }
 };
 
 function increaseOrDecrease(e, symbol, element) {
