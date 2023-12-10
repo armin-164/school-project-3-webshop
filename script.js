@@ -573,7 +573,8 @@ function formIsValid() {
   if (empty === 0 && checkbox.checked && selectPayment.selectedIndex !== 0 && cartArray.length >= 1) {
     return true;
   }
-  
+
+  return false;
 };
 
 // This function will calculate the delivery time from the moment it has been used.
