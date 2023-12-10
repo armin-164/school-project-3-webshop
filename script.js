@@ -4,8 +4,9 @@ const cartArray = [];
 const filterList = document.querySelector('select[name="filter-list"]');
 const filterListCategories = document.querySelector('select[name="filter-category"]');
 
-document.addEventListener("DOMContentLoaded", priceIncreaseRule());
-
+// This function will increase the price of all donuts that
+// are visible in the DOM product list with 15% if conditions are met. Note that
+// the product list in the DOM and the cart in the DOM are entirely different.
 function priceIncreaseRule() {
   const allProductPrices = document.querySelectorAll('.product-price');
 
@@ -21,11 +22,30 @@ function priceIncreaseRule() {
   }
 }
 
-filterList.addEventListener('change', () => {
-    filterProducts(filterList.value)
-});
+//Execute priceIncreaseRule when DOM content has loaded. 
+document.addEventListener("DOMContentLoaded", priceIncreaseRule());
 
 
+// This function will sort an array alphabetically
+function sortPropertyAlphabetically (property) {
+    property.sort((a, b) => {
+        const nameA = a.name.toUpperCase();
+        const nameB = b.name.toUpperCase();
+        if (nameA < nameB) {
+          return -1;
+        }
+        if (nameA > nameB) {
+          return 1;
+        }
+      
+        return 0;
+      });
+};
+
+// This function will retrieve all the already visible products
+// on the DOM and make an object for each product with different 
+// properties that will be pushed in an array. The properties of the objects
+// will determine how the array is sorted and it will be reflected in the DOM
 function filterProducts (filterValue) {
     const allProductsDOM = document.querySelectorAll('.product');
     const productList = document.querySelector('.product-list');
@@ -79,23 +99,16 @@ function filterProducts (filterValue) {
             productList.appendChild(obj.element);
         })
     }
-}
+};
+
+// This is an addeventlistener that will look for when
+// the "select" elements options is changed
+filterList.addEventListener('change', () => {
+    filterProducts(filterList.value)
+});
 
 
-function sortPropertyAlphabetically (property) {
-    property.sort((a, b) => {
-        const nameA = a.name.toUpperCase();
-        const nameB = b.name.toUpperCase();
-        if (nameA < nameB) {
-          return -1;
-        }
-        if (nameA > nameB) {
-          return 1;
-        }
-      
-        return 0;
-      });
-}
+
 
 
 
