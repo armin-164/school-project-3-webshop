@@ -440,6 +440,7 @@ function createItemRightSection(price, rating, amount) {
   removeText.addEventListener('click', () => {
     removeText.closest('.cart-item').remove();
     removeFromCartArray(removeText);
+    updateTotalPrice();
   });
 
   itemRightSection.appendChild(itemAmountControl);
