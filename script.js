@@ -4,6 +4,12 @@ const cartArray = [];
 const filterList = document.querySelector('select[name="filter-list"]');
 const filterListCategories = document.querySelector('select[name="filter-category"]');
 
+function createElementWithInnerText(el, text) {
+  const element = document.createElement(el);
+  element.innerText = text;
+  return element;
+}
+
 // This function will increase the price of all donuts that
 // are visible in the DOM product list with 15% if conditions are met. Note that
 // the product list in the DOM and the cart in the DOM are entirely different.
@@ -375,11 +381,8 @@ function createItemLeftSection(img, name, category) {
   const itemInfo = document.createElement('div');
   itemInfo.classList.add('item-info');
 
-  const itemName = document.createElement('h4');
-  itemName.innerText = name;
-
-  const itemCategory = document.createElement('p');
-  itemCategory.innerText = `Category: ${category}`;
+  const itemName = createElementWithInnerText('h4', name);
+  const itemCategory = createElementWithInnerText('p', `Category: ${category}`);
 
   itemInfo.appendChild(itemName);
   itemInfo.appendChild(itemCategory);
@@ -398,16 +401,14 @@ function createItemRightSection(price, rating, amount) {
   const itemAmountControl = document.createElement('div');
   itemAmountControl.classList.add('item-amount-control');
 
-  const reduceBtn = document.createElement('button');
-  reduceBtn.innerText = '-';
+  const reduceBtn = createElementWithInnerText('button', '-');
 
   const itemAmountInput = document.createElement('input');
   itemAmountInput.type = 'number';
   itemAmountInput.readOnly = 'true';
   itemAmountInput.value = amount;
 
-  const increaseBtn = document.createElement('button');
-  increaseBtn.innerText = '+';
+  const increaseBtn = createElementWithInnerText('button', '+');
 
   itemAmountControl.appendChild(reduceBtn);
   itemAmountControl.appendChild(itemAmountInput);
@@ -416,9 +417,8 @@ function createItemRightSection(price, rating, amount) {
   const itemPriceContainer = document.createElement('div');
   itemPriceContainer.classList.add('item-price');
 
-  const itemPrice = document.createElement('span');
+  const itemPrice = createElementWithInnerText('span', `${price}kr`)
   itemPrice.classList.add('item-total-price');
-  itemPrice.innerText = `${price}kr`;
 
   reduceBtn.addEventListener("click", (e) => {
     increaseOrDecrease(e, "-", itemAmountInput);
@@ -433,9 +433,8 @@ function createItemRightSection(price, rating, amount) {
 
   itemPriceContainer.appendChild(itemPrice);
 
-  const removeText = document.createElement('span');
+  const removeText = createElementWithInnerText('span', 'Remove from cart');
   removeText.classList.add('remove-item-from-cart');
-  removeText.innerText = 'Remove from cart';
 
   removeText.addEventListener('click', () => {
     removeText.closest('.cart-item').remove();
@@ -614,8 +613,7 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
     const orderConfirmationBox = document.createElement("div");
     orderConfirmationBox.classList.add('order-confirmation');
 
-    const confirmationHeader = document.createElement("h5");
-    confirmationHeader.innerText = 'Thank you for the order!'
+    const confirmationHeader = createElementWithInnerText('h5', 'Thank you for the order!');
 
     const orderedItemsContainer = document.createElement("div");
     orderedItemsContainer.classList.add("ordered-items");
@@ -625,14 +623,9 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
       const itemRow = document.createElement("div");
       itemRow.classList.add("confirmation-row");
 
-      const itemName = document.createElement("span");
-      itemName.innerText = item.name;
-
-      const itemAmount = document.createElement("span");
-      itemAmount.innerText = `x ${item.amount}`;
-
-      const itemPrice = document.createElement("span");
-      itemPrice.innerText = `${item.price}kr`
+      const itemName = createElementWithInnerText('span', item.name);
+      const itemAmount = createElementWithInnerText('span', `x ${item.amount}`);
+      const itemPrice = createElementWithInnerText('span', `${item.price}kr`);
 
       itemRow.appendChild(itemName);
       itemRow.appendChild(itemAmount);
@@ -643,27 +636,23 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
     const infoContainer = document.createElement("div");
     infoContainer.classList.add("user-delivery-info");
 
-    const deliveryMessageParagraph = document.createElement("p");
-    deliveryMessageParagraph.innerText = 'Delivery Information:'
+    const deliveryMessageParagraph = createElementWithInnerText('p', 'Delivery Information:');
     infoContainer.appendChild(deliveryMessageParagraph);
 
-    const deliveryName = document.createElement("span");
-    deliveryName.innerText = `${names[0].value} ${names[1].value}`;
+    const deliveryName = createElementWithInnerText('span', `${names[0].value} ${names[1].value}`);
     infoContainer.appendChild(deliveryName);
 
-    const deliveryAdress = document.createElement("span");
-    deliveryAdress.innerText = `${adress.value}, ${postalCode.value}, ${city.value}`;
+    const deliveryAdress = createElementWithInnerText('span', `${adress.value}, ${postalCode.value}, ${city.value}`);
     infoContainer.appendChild(deliveryAdress);
 
-    const deliveryContactInfo = document.createElement("span");
-    deliveryContactInfo.innerText = `${email.value}, ${phone.value}`;
+    const deliveryContactInfo = createElementWithInnerText('span', `${email.value}, ${phone.value}`);
     infoContainer.appendChild(deliveryContactInfo);
 
     const deliveryTimeContainer = document.createElement("div");
     deliveryTimeContainer.classList.add("order-delivery-time");
 
-    const deliveryTime = document.createElement("span");
-    deliveryTime.innerText = calculateDeliveryTime();
+    const deliveryTime = createElementWithInnerText('span', calculateDeliveryTime());
+    
     deliveryTimeContainer.appendChild(deliveryTime);
 
 
