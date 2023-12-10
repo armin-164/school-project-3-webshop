@@ -209,7 +209,8 @@ function fetchItemInfo(e) {
   cartArray.push(cartItem);
 };
 
-// This function will retrieve the DOM that represents the cart total.
+// This function will retrieve the DOM that represents the cart total
+// and update it depending on the conditions that are checked.
 function updateTotalPrice() {
   const cartSumDOM = document.querySelector('.cart-total-sum');
   let cartSum = 0;
@@ -226,19 +227,24 @@ function updateTotalPrice() {
 
   else {
 
+    // For each item, add the items price on the cartSum 
+    // and add the items amount to totalDonuts
     cartArray.forEach((item) => {
       cartSum += item.price;
       totalDonuts += item.amount;
     });
 
+    // If the amount of donuts is more than 15, set deliveryFee to 0
     if (totalDonuts > 15) {
       deliveryFee = 0;
     }
 
+    // Else, add an additional 10% of the cartSum on the deliveryFee
     else {
       deliveryFee += Math.round(cartSum * 0.1);
     }
 
+    // If it's monday and the hour is before 10
     if (weekDay === 1 && hours < 10) {
       cartSumDOM.innerText = `Monday special 10%: The prices are ${Math.round(cartSum * 0.9) * 100 / 100}kr + ${deliveryFee}kr in delivery fee. Total: ${Math.round((cartSum * 0.9) + deliveryFee)}`;
     }
@@ -247,6 +253,8 @@ function updateTotalPrice() {
       cartSumDOM.innerText = `The prices are ${cartSum}kr + ${deliveryFee}kr in delivery fee. Total: ${Math.round(cartSum + deliveryFee)}`;
     }
 
+    // If the cartSum and deliveryFee combined, exceeds 800, remove
+    // the second option (invoice) for payment
     if (cartSum + deliveryFee > 800) {
       const paymentSelector = document.querySelector(".payment-method");
       paymentSelector.removeChild(paymentSelector.options[2]);
@@ -255,13 +263,22 @@ function updateTotalPrice() {
   }
 };
 
+// This function will manipulate DOM and the cart items when
+// the increase or decrease amount is clicked.
 function increaseOrDecrease(e, symbol, element) {
+
+  // Create a few variables that will contain information from
+  // the closest cart item to the event object.
   const cartItem = e.target.closest('.cart-item');
   const cartItemName = cartItem.querySelector('h4').innerText;
   const itemPriceDOM = e.target.closest('.item-right-section').querySelector('.item-total-price');
   let defaultProductPrice;
 
   const productsDOM = document.querySelectorAll('.product');
+
+  // For each product in the DOM, see if the products name is the same
+  // as the cartItems name. If so, retrieve the products price with two decimals and 
+  // assign to defaultProductPrice
   productsDOM.forEach((product) => {
     const productName = product.querySelector("h3").innerText;
     if (productName === cartItemName) {
@@ -269,14 +286,22 @@ function increaseOrDecrease(e, symbol, element) {
     }
   });
 
+  // For each item in cartArray
   cartArray.forEach((obj) => {
 
+      // If cartItemName is the same as the objects name and the amount is
+      // greater or equal to 1 and the symbol is a +.
+      // Increase the amount by 1, assign the amount to the 
+      // element value (the DOM element that shows the amount of this item)
+      // and assign the defaultProductPrice multiplied by the object amount
+      // to the objects price.
       if (cartItemName === obj.name && obj.amount >= 1 && symbol === "+") {
           obj.amount += 1;
           element.value = obj.amount;
           obj.price = defaultProductPrice * obj.amount;
       
-
+          // If objects amount is equal or greather than 10, multiply the 
+          // objects price (a 10% discount on that specific object/cartItem)
           if (obj.amount >= 10) {
             obj.price *= 0.9;
           }
@@ -285,6 +310,8 @@ function increaseOrDecrease(e, symbol, element) {
 
       }
 
+      // Same logic but will decrease the amount due to the - symbol and will only work
+      // when the objects amount is equal or greater than 2.
       else if (cartItemName === obj.name && obj.amount >=2  && symbol === "-") {
           obj.amount -= 1;
           element.value = obj.amount;
@@ -299,6 +326,8 @@ function increaseOrDecrease(e, symbol, element) {
   })
 };
 
+// Fetch the closest cartItemName to the event object. Find the index of the cartArray by looking if
+// the productName resembles the objects name and use the index to splice the item from the array.
 function removeFromCartArray (e) {
   const productName = e.closest('.cart-item').querySelector("h4").innerText;
   const itemIndex = cartArray.findIndex(obj => obj.name === productName);
@@ -306,6 +335,8 @@ function removeFromCartArray (e) {
 };
 
 
+// This function will take the numerical rating 
+// and create the ratings DOM elements for the cartItem
 function calculate_And_Return_Rating(rating) {
   const itemRatingContainer = document.createElement('div');
   itemRatingContainer.classList.add('rating');
@@ -334,6 +365,7 @@ function calculate_And_Return_Rating(rating) {
   return itemRatingContainer;
 };
 
+// Create left section of the cartItem
 function createItemLeftSection(img, name, category) {
   const itemLeftSection = document.createElement('div');
   itemLeftSection.classList.add('item-left-section');
@@ -358,7 +390,7 @@ function createItemLeftSection(img, name, category) {
   return itemLeftSection;
 };
 
-
+// Create right section of the cartItem
 function createItemRightSection(price, rating, amount) {
   const itemRightSection = document.createElement('div');
   itemRightSection.classList.add('item-right-section');
@@ -420,7 +452,7 @@ function createItemRightSection(price, rating, amount) {
 
 
 
-
+// This will update cart in DOM
 function updateCartDOM() {
   cartArray.forEach((obj) => {
   const cartItem = document.createElement('div');
@@ -438,6 +470,9 @@ function updateCartDOM() {
 });
 }
 
+// For each addToCart button, add an
+// eventlistener that will check if the products is already a cartItem in
+// the cartArray and run a few functions if it's not in the cartArray
 addToCartButtons.forEach((btn) => {
   btn.addEventListener('click', () => {
     const isItemInCartArray = isItemInArray(btn);
@@ -458,9 +493,18 @@ const submitOrderBtn = document.querySelector('.submit-btn');
 const resetOrderBtn = document.querySelector('.reset-btn');
 const paymentSelector = document.querySelector(".payment-method");
 
+// This function will validate input field depending on the arguments in the parameter
 function validateInputField(negate, regex, input, msg ) {
     const doesInputMatchRegex = regex.test(input.value);
 
+    // FOR THE IF STATEMENT A FEW LINES DOWN: Some of the regex that will be used, check for a valid input and some
+    // of the regex check for a non valid input, therefore the use of the negate argument (true/false).
+
+    // Example with two input fields. User name and user postal code:
+    // For the user name I have a regex that will check if the name has symbols or numbers. Basically an invalid name.
+    // But for the postal code I have a regex that checks for 5 numbers which is a valid postal code.
+    // That's why there is a need for the negate argument. 
+    // If I only used doesInputMatchRegex and !doesInputMatchRegex, it wouldn't work since the code would run regardless if it matched or not
     if ((negate && !doesInputMatchRegex) || (!negate && doesInputMatchRegex)) {
         input.setCustomValidity(msg);
     } else {
@@ -469,6 +513,7 @@ function validateInputField(negate, regex, input, msg ) {
     
 };
 
+// This will remove the users payment info that they have filled in
 function removePaymentInfo(element) {
   const allInputs = element.querySelectorAll('input');
   allInputs.forEach((input) => {
@@ -476,6 +521,7 @@ function removePaymentInfo(element) {
   })
 };
 
+// This function will make the inputs related to the selected payment method, visible.
 function displayPaymentMethod(method) {
   const invoicePaymentDiv = document.querySelector('#payment-invoice');
   const cardPaymentDiv = document.querySelector('#payment-card');
@@ -497,13 +543,14 @@ paymentSelector.addEventListener('change', () => {
 });
 
 
-
+// Add an eventlistener that will reset the cart in DOM, cartArray and update the total price.
 resetOrderBtn.addEventListener("click", () => {
   resetCart();
   cartArray.splice(0, cartArray.length);  
   updateTotalPrice();
 });
 
+// This function will check if all necessary forms are filled out and then return true.
 function formIsValid() {
   const formRows = document.querySelectorAll('.form-row[style*="display: flex"]');
   const checkbox = document.querySelector('input[type="checkbox"][required]');
@@ -529,6 +576,7 @@ function formIsValid() {
   
 };
 
+// This function will calculate the delivery time from the moment it has been used.
 function calculateDeliveryTime() {
   const currentDate = new Date();
   const weekDay = currentDate.getDay();
@@ -556,6 +604,7 @@ function calculateDeliveryTime() {
   }
 };
 
+// This function will display the order confirmation in the DOM.
 function displayOrderConfirmation (names, adress, postalCode, city, email, phone) {
   const sectionCheckout = document.querySelector('.section-checkout');
 
@@ -634,7 +683,7 @@ function displayOrderConfirmation (names, adress, postalCode, city, email, phone
    }
 };
 
-
+// This function will validate each input field by using regex and give custom messages when conditions aren't met.
 function validateOrderForm() {
     const hasNumbersOrSymbols = /[\d!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
     const containsFiveNumbers = /^\d{5}$/;
@@ -682,6 +731,7 @@ function validateOrderForm() {
     displayOrderConfirmation(userFirstAndLastName, userAdress, userPostalCode, userCity, userEmail, userPhone);
 };
 
+// An event listener that will validate each input in the form
 submitOrderBtn.addEventListener("click", () => {
   validateOrderForm();
 }); 
