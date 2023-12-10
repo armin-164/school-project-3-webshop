@@ -311,6 +311,20 @@ main {
                         height: clamp(1em, 3vh, 4em);
                         font-size: clamp(1em, 0.75vw, 1.5em);
                     }
+
+                    .discount-code {
+                        width: 50%;
+                        height: clamp(1.5em, 2em, 3em);
+                    }
+
+                    .apply-btn {
+                        width: 5rem;
+                        height: 2rem;
+                        font-size: clamp(1em, 0.55vw, 1.5em);
+                        background-color: blue;
+                        color: white;
+                        font-weight: bold;
+                    }
                 }
 
                 .pay-method-and-consent {
