@@ -323,13 +323,15 @@ main {
                 width: 80%;
 
 
-                // WORK ON HERE LATER
-                > #payment-card, #payment-invoice {
+                .payment-card, .payment-invoice {
                     display: none;
                 }
 
-                .form-row {
+                .form-row:not(.payment-card):not(.payment-invoice) {
                     display: flex;
+                }
+
+                .form-row {
                     flex-direction: column;
                     width: 100%;
 
