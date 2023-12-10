@@ -256,7 +256,7 @@ function updateTotalPrice() {
     }
 
     else {
-      cartSumDOM.innerText = `The prices are ${cartSum}kr + ${deliveryFee}kr in delivery fee. Total: ${Math.round(cartSum + deliveryFee)}`;
+      cartSumDOM.innerText = `The prices are ${Math.round(cartSum) * 100 / 100}kr + ${Math.round(deliveryFee) * 100 / 100}kr in delivery fee. Total: ${Math.round(cartSum + deliveryFee)}`;
     }
 
     // If the cartSum and deliveryFee combined, exceeds 800, remove
@@ -305,11 +305,13 @@ function increaseOrDecrease(e, symbol, element) {
           obj.amount += 1;
           element.value = obj.amount;
           obj.price = defaultProductPrice * obj.amount;
+          obj.price = Math.round(obj.price * 100) / 100;
       
           // If objects amount is equal or greather than 10, multiply the 
           // objects price (a 10% discount on that specific object/cartItem)
           if (obj.amount >= 10) {
             obj.price *= 0.9;
+            obj.price = Math.round(obj.price * 100) / 100;
           }
 
           itemPriceDOM.innerText = `${obj.price}kr`;
@@ -325,6 +327,7 @@ function increaseOrDecrease(e, symbol, element) {
 
           if (obj.amount >= 10) {
             obj.price *= 0.9;
+            obj.price = Math.round(obj.price * 100) / 100;
           }
           
           itemPriceDOM.innerText = `${obj.price}kr`;
