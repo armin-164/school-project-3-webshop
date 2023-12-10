@@ -51,6 +51,7 @@ function filterProducts (filterValue) {
     const productList = document.querySelector('.product-list');
     const productsArray = [];
 
+    // Retrieve all products in DOM, create an object for each and push into an array
     allProductsDOM.forEach((product) => {
         const ratings = product.querySelectorAll('.fa');
 
@@ -65,6 +66,9 @@ function filterProducts (filterValue) {
 
     })
 
+    // If the select elements option value is filter-name,
+    // clear all products and sort the array alphabetically
+    // and append each item of the array to the product list
     if (filterValue === "filter-name") {
         productList.innerHTML = "";
         sortPropertyAlphabetically(productsArray);
@@ -73,6 +77,7 @@ function filterProducts (filterValue) {
         })
     }
 
+    // Same logic but sort the array by highest price first
     else if (filterValue === "filter-price-down") {
         productList.innerHTML = "";
         productsArray.sort((a, b) => b.price - a.price);
@@ -82,6 +87,7 @@ function filterProducts (filterValue) {
         })
     }
 
+    // Same logic but sort the array by lowest price first
     else if (filterValue === "filter-price-up") {
         productList.innerHTML = "";
         productsArray.sort((a, b) => a.price - b.price);
@@ -90,7 +96,8 @@ function filterProducts (filterValue) {
             productList.appendChild(obj.element);
         })
     }
-
+    
+    // Same logic but sort by highest rating first
     else if (filterValue === "filter-rating") {
         productList.innerHTML = "";
         productsArray.sort((a, b) => b.rating - a.rating);
@@ -106,11 +113,6 @@ function filterProducts (filterValue) {
 filterList.addEventListener('change', () => {
     filterProducts(filterList.value)
 });
-
-
-
-
-
 
 
 filterListCategories.addEventListener('change', () => {
