@@ -274,48 +274,48 @@
             <span class="cart-total-sum">Your Total is: </span>
             <fieldset class="form-checkout">
                 <div class="form-row">
-                    <label>First Name</label>
-                    <input type="text" class="user-name" maxlength="50" minlength="1" required>
+                    <label for="first-name">First Name</label>
+                    <input type="text" id="first-name" class="user-name" maxlength="50" minlength="1" required>
                 </div>
             
                 <div class="form-row">
-                    <label>Last Name</label>
-                    <input type="text" class="user-name" maxlength="50" minlength="1" required>
+                    <label for="last-name">Last Name</label>
+                    <input type="text" id="last-name" class="user-name" maxlength="50" minlength="1" required>
                 </div>
             
                 <div class="form-row">
-                    <label>Street Adress</label>
-                    <input type="text" class="user-adress" minlength="1" maxlength="50" required>
+                    <label for="street-adress">Street Adress</label>
+                    <input type="text" id="street-adress" class="user-adress" minlength="1" maxlength="50" required>
                 </div>
             
                 <div class="form-row">
-                    <label>Postal Code</label>
-                    <input type="text" class="user-postalcode" minlength="5" maxlength="5" required>
+                    <label for="postal-code">Postal Code</label>
+                    <input type="text" id="postal-code" class="user-postalcode" minlength="5" maxlength="5" required>
                 </div>
             
                 <div class="form-row">
-                    <label>City</label>
-                    <input type="text" class="user-city" minlength="1" maxlength="30" required>
+                    <label for="city">City</label>
+                    <input type="text" id="city" class="user-city" minlength="1" maxlength="30" required>
                 </div>
             
                 <div class="form-row">
-                    <label>Optional Port Code</label>
-                    <input type="text" class="user-portcode" minlength="4" maxlength="4">
+                    <label for="optional-port-code">Optional Port Code</label>
+                    <input type="text" id="optional-port-code" class="user-portcode" minlength="4" maxlength="4">
                 </div>
             
                 <div class="form-row">
-                    <label>Phone number</label>
-                    <input type="tel" class="user-phone" required>
+                    <label for="phone-number">Phone Number</label>
+                    <input type="tel" id="phone-number" class="user-phone" required>
                 </div>
             
                 <div class="form-row">
-                    <label>Email Address</label>
-                    <input type="email" class="user-email" minlength="4" maxlength="40" required>
+                    <label for="email-address">Email Address</label>
+                    <input type="email" id="email-address" class="user-email" minlength="4" maxlength="40" required>
                 </div>
             
                 <div class="pay-method-and-consent">
                     <label>Payment Method</label>
-                    <select class="payment-method" required>
+                    <select class="payment-method" aria-label="Payment method" required>
                         <option selected value>Select your payment method</option>
                         <option value="card">Card</option>
                         <option value="invoice">Invoice</option>
@@ -333,25 +333,25 @@
                 </div>
             
                 <div class="form-row payment-invoice">
-                    <label>Social Security Number</label>
-                    <input type="text" class="user-ssn" required>
+                    <label for="ssn">Social Security Number</label>
+                    <input type="text" id="ssn" class="user-ssn" required>
                 </div>
             
                 <div class="form-row payment-card">
-                    <label >Card Number</label>
-                    <input type="text" class="user-card-number" required>
+                    <label for="card-number" >Card Number</label>
+                    <input type="text" id="card-number" class="user-card-number" required>
             
-                    <label>Expiry Date</label>
-                    <input type="text" class="user-card-expiry-date" required>
+                    <label for="card-expiry-date">Expiry Date</label>
+                    <input type="text" id="card-expiry-date" class="user-card-expiry-date" required>
             
-                    <label>CVC</label>
-                    <input type="text" class="user-card-cvc" required>
+                    <label for="card-cvc">CVC</label>
+                    <input type="text" id="card-cvc" class="user-card-cvc" required>
                 </div>
             
                 <div class="form-row">
-                    <label>Discount Code</label>
+                    <label for="discount">Discount Code</label>
                     <div>
-                        <input type="text" class="discount-code">
+                        <input type="text" id="discount" class="discount-code">
                         <button class="apply-btn">Apply</button>
                     </div>
                 </div>
