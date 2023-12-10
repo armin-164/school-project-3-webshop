@@ -337,7 +337,7 @@ function removeFromCartArray (e) {
 
 // This function will take the numerical rating 
 // and create the ratings DOM elements for the cartItem
-function calculate_And_Return_Rating(rating) {
+function calculateAndReturnRating(rating) {
   const itemRatingContainer = document.createElement('div');
   itemRatingContainer.classList.add('rating');
 
@@ -445,7 +445,7 @@ function createItemRightSection(price, rating, amount) {
 
   itemRightSection.appendChild(itemAmountControl);
   itemRightSection.appendChild(itemPriceContainer);
-  itemRightSection.appendChild(calculate_And_Return_Rating(rating));
+  itemRightSection.appendChild(calculateAndReturnRating(rating));
   itemRightSection.appendChild(removeText);
 
   return itemRightSection;
