@@ -726,3 +726,23 @@ submitOrderBtn.addEventListener("click", () => {
   validateOrderForm();
 }); 
 
+
+const form = document.querySelector('form');
+const allInputs = form.querySelectorAll('input');
+
+// Reset the form, cart in DOM, cartArray, and update total price
+// after 15 minutes.
+function resetAfterFifteenMinutes() {
+  setTimeout(() => {
+    form.reset();
+    resetCart();
+    cartArray.splice(0, cartArray.length);  
+    updateTotalPrice();
+  }, 900000);
+};
+
+// For each input add an eventlistener when inputs value is changed
+// and call the resetAfterFifteenMinutes function.
+allInputs.forEach((input) => {
+  input.addEventListener('input',resetAfterFifteenMinutes)
+});
