@@ -551,6 +551,7 @@ function displayPaymentMethod(method) {
 
 paymentSelector.addEventListener('change', () => {
     displayPaymentMethod(paymentSelector.value);
+    formIsValid();
 });
 
 
