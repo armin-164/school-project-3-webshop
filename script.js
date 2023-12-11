@@ -272,7 +272,6 @@ function updateTotalPrice() {
     // If the cartSum and deliveryFee combined, exceeds 800, remove
     // the second option (invoice) for payment
     if (cartSum + deliveryFee > 800) {
-      const paymentSelector = document.querySelector(".payment-method");
       paymentSelector.removeChild(paymentSelector.options[2]);
     }
 
