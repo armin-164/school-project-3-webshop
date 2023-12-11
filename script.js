@@ -3,6 +3,10 @@ const shoppingCart = document.querySelector('.shop-cart');
 const cartArray = [];
 const filterList = document.querySelector('select[name="filter-list"]');
 const filterListCategories = document.querySelector('select[name="filter-category"]');
+const submitOrderBtn = document.querySelector('.submit-btn');
+const resetOrderBtn = document.querySelector('.reset-btn');
+const paymentSelector = document.querySelector(".payment-method");
+
 
 function createElementWithInnerText(el, text) {
   const element = document.createElement(el);
@@ -29,7 +33,13 @@ function priceIncreaseRule() {
 }
 
 // Execute priceIncreaseRule when DOM content has loaded. 
-document.addEventListener("DOMContentLoaded", priceIncreaseRule());
+document.addEventListener("DOMContentLoaded", () => {
+  priceIncreaseRule();
+
+  if (submitOrderBtn.disabled) {
+    submitOrderBtn.style.backgroundColor = 'grey';
+  }
+});
 
 // This function will return a numerical rating depending
 // on the classes that the elements (that is used as an arg) has.
@@ -492,9 +502,7 @@ addToCartButtons.forEach((btn) => {
 
 
 
-const submitOrderBtn = document.querySelector('.submit-btn');
-const resetOrderBtn = document.querySelector('.reset-btn');
-const paymentSelector = document.querySelector(".payment-method");
+
 
 // This function will validate input field depending on the arguments in the parameter
 function validateInputField(negate, regex, input, msg ) {
@@ -555,29 +563,40 @@ resetOrderBtn.addEventListener("click", () => {
 
 // This function will check if all necessary forms are filled out and then return true.
 function formIsValid() {
-  const formRows = document.querySelectorAll('.form-row[style*="display: flex"]');
+  const formRows = document.querySelectorAll('.form-row');
+  const flexFormRows = [];
   const checkbox = document.querySelector('input[type="checkbox"][required]');
   const selectPayment = document.querySelector('.payment-method');
   let empty = 0;
 
-
   formRows.forEach((row) => {
-    const requiredInputs = row.querySelectorAll('input[type="text"][required]');
+    if (window.getComputedStyle(row).display === "flex") {
+      flexFormRows.push(row);
+    }
+  });
 
+  flexFormRows.forEach((row) => {
+  const requiredInputs = row.querySelectorAll('input[required]');
     requiredInputs.forEach((input) => {
       if (input.value === "") {
         empty += 1;
       }
-    })
+    });
 
- 
-  })
+  });
+
 
   if (empty === 0 && checkbox.checked && selectPayment.selectedIndex !== 0 && cartArray.length >= 1) {
+    submitOrderBtn.disabled = false;
+    submitOrderBtn.style.backgroundColor = 'green';
     return true;
   }
 
-  return false;
+  else {
+    submitOrderBtn.disabled = true;
+    submitOrderBtn.style.backgroundColor = 'grey';
+    return false;
+  }
 };
 
 // This function will calculate the delivery time from the moment it has been used.
@@ -746,7 +765,10 @@ function resetAfterFifteenMinutes() {
 };
 
 // For each input add an eventlistener when inputs value is changed
-// and call the resetAfterFifteenMinutes function.
+// and call the resetAfterFifteenMinutes and formIsValid functions.
 allInputs.forEach((input) => {
-  input.addEventListener('input',resetAfterFifteenMinutes)
+  input.addEventListener('input', () => {
+    resetAfterFifteenMinutes();
+    formIsValid();
+  });
 });
