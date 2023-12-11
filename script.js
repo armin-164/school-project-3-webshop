@@ -272,7 +272,16 @@ function updateTotalPrice() {
     // If the cartSum and deliveryFee combined, exceeds 800, remove
     // the second option (invoice) for payment
     if (cartSum + deliveryFee > 800) {
+      const invoicePaymentDiv = document.querySelector('.payment-invoice');
+      invoicePaymentDiv.style.display = 'none';
       paymentSelector.removeChild(paymentSelector.options[2]);
+    }
+
+    else if (paymentSelector.options.length === 2) {
+      const invoiceOption = document.createElement('option');
+      invoiceOption.value = 'invoice';
+      invoiceOption.text = 'Invoice';
+      paymentSelector.appendChild(invoiceOption);
     }
 
   }
