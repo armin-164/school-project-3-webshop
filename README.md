@@ -10,6 +10,11 @@ This is a school project where I will build a webshop for a "client"
 that sells donuts.
 The aim is to exercise my abilities on HTML, CSS and especially JS.
 
+## Validation
+![CSS Validation Report](validering/css-validering.jpg)
+![HTML Validation Report](validering/html-validering.jpg)
+![Lighthouse Analysis Report on Mobile](validering/lighthouse-rapport-mobile.jpg)
+![Lighthouse Analysis Report](validering/lighthouse-rapport.jpg)
 
 ## Team
 
